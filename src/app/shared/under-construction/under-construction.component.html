@@ -1,0 +1,24 @@
+<div class="flex items-center justify-center min-h-screen bg-gray-100 p-6">
+  <div class="bg-white shadow-lg rounded-lg border border-gray-300 p-8 text-center max-w-lg w-full">
+    <!-- Icon -->
+    <mat-icon class="text-6xl text-orange-500">construction</mat-icon>
+
+    <!-- Message -->
+    <h1 class="text-2xl font-semibold text-gray-800 mt-6 mb-2">
+      This Page is Under Construction
+    </h1>
+    <p class="text-gray-600 text-base mb-6">
+      We're working hard to bring you something amazing. Please check back later!
+    </p>
+
+    <!-- Buttons -->
+    <div class="flex flex-col md:flex-row justify-center items-center gap-4">
+      <button mat-raised-button color="primary" routerLink="/" class="bg-blue-600 hover:bg-blue-700 text-white font-medium px-6 py-2 rounded">
+        Go to Home
+      </button>
+      <button mat-stroked-button color="accent" (click)="reloadPage()" class="border border-blue-600 text-blue-600 hover:bg-blue-50 font-medium px-6 py-2 rounded">
+        Refresh Page
+      </button>
+    </div>
+  </div>
+</div>app-page-not-found>

@@ -1,0 +1,79 @@
+<div class="w-max-1200 mx-auto px-6 my-10 ">
+  <h1 class="text-3xl font-bold mx-4 mb-4 text-gray-700">For You</h1>
+  <mat-divider class="m-30 text-gray-400"></mat-divider>
+
+  <h2 class="text-2xl font-semibold mt-4 mx-4 text-gray-800">Recent Projects</h2>
+  <div class="flex overflow-auto gap-4 mt-4">
+    @for (project of recentProjects; track recentProjects.indexOf(project)) {
+      <mat-card class="min-w-[250px] max-w-sm transform-ease-in-out hover:scale-105 transition duration-300">
+        <mat-card-header>
+          <mat-card-title>{{ project.name }}</mat-card-title>
+          <mat-card-subtitle>{{ project.description }}</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+          <p>Last Updated: {{ project.lastUpdated | date:'shortDate' }}</p>
+        </mat-card-content>
+      </mat-card>
+    }
+  </div>
+  <br/>
+  <mat-divider class="text-gray-400"></mat-divider>
+
+  <mat-tab-group class="mt-16 flex gap-10">
+    @for (option of navbarOptions; track option.name) {
+      <mat-tab label="{{option.name}}">
+        @if (option.name === 'Worked on') {
+          <ul class="mt-6">
+            @for (item of workedOnList; track workedOnList.indexOf(item)) {
+              <ng-container>
+                <li class="my-2">
+                  <mat-list>
+                    <mat-list-item class="space-y-1 space-x-3 justify-center flex">
+                      <mat-checkbox>{{ item }}</mat-checkbox>
+                    </mat-list-item>
+                  </mat-list>
+                </li>
+              </ng-container>
+            }
+          </ul>
+        }
+        @if (option.name === 'Viewed') {
+          <ul class="mt-6">
+            @for (item of viewedList; track viewedList.indexOf(item)) {
+              <ng-container>
+                <li class="my-2">
+                  <mat-list>
+                    <mat-list-item>
+                      <h3>{{ item }}</h3>
+                    </mat-list-item>
+                  </mat-list>
+                </li>
+              </ng-container>
+            }
+          </ul>
+        }
+        @if (option.name === 'Assigned to me') {
+          <ul class="mt-6">
+            @for (item of assignedToMeList; track assignedToMeList.indexOf(item)) {
+              <ng-container>
+                <li class="my-2">
+                  <mat-list>
+                    <mat-list-item>
+                      <h3>{{ item }}</h3>
+                    </mat-list-item>
+                  </mat-list>
+                </li>
+              </ng-container>
+            }
+          </ul>
+        }
+        @if (option.name === 'Boards') {
+          <div class="mt-6">
+            <p>Boards content goes here</p>
+          </div>
+        }
+      </mat-tab>
+    }
+  </mat-tab-group>
+</div>
+

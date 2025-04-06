@@ -1,0 +1,128 @@
+<nav class="navbar bg-white shadow p-4 flex items-center justify-between">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <button mat-button (click)="toggle.emit()" type="button">
+    <mat-icon>{{ !isVisible ? 'arrow_forward_ios' : 'arrow_back_ios' }}</mat-icon>
+  </button>
+
+  <a href="/" class="logo text-3xl font-bold gradient-text">
+    Gojira
+  </a>
+
+  <div class="search-bar flex-1 mx-4 pl-10 pr-10">
+    <input type="text" placeholder="Search..." class="border rounded w-full py-2 px-4 w-2xl text-sm"/>
+  </div>
+
+  <div class="navbar-actions flex items-center space-x-1">
+    <button
+      class="action-button text-blue-600 font-medium flex items-center px-4 py-2 bg-blue-100 hover:bg-blue-200 rounded">
+      <mat-icon>add</mat-icon>
+      <span class="ml-2">Create</span>
+    </button>
+
+    <button mat-button type="button"
+            matBadge="5"
+            matBadgePosition="after"
+            matBadgeSize="large"
+            matTooltip="Notifications">
+      <mat-icon>notifications</mat-icon>
+    </button>
+
+    <button mat-button type="button"
+            matTooltip="Help">
+    <mat-icon>help</mat-icon>
+    </button>
+
+    <button mat-button type="button"
+            matTooltip="Settings">
+      <mat-icon>settings</mat-icon>
+    </button>
+
+    <button mat-button type="button"
+            routerLink="/profile"
+            matTooltip="Profile">
+      <mat-icon>account_circle</mat-icon>
+    </button>
+  </div>
+</nav>
+<div [hidden]="!isVisible" class="fixed sidebar bg-gray-300 text-black w-50 min-h-screen px-4 py-8">
+  <ul class="space-y-4">
+    <li>
+      <a
+        routerLink="/home"
+        class="flex items-center px-4 py-2 space-x-2 hover:bg-gray-500 rounded transition"
+      >
+        <mat-icon>star</mat-icon>
+        <span>For You</span>
+      </a>
+    </li>
+    <li>
+      <a
+        routerLink="/apps"
+        class="flex items-center px-4 py-2 space-x-2 hover:bg-gray-500 rounded transition"
+      >
+        <mat-icon>apps</mat-icon>
+        <span>Apps</span>
+      </a>
+    </li>
+
+    <li>
+      <a
+        routerLink="/plans"
+        class="flex items-center px-4 py-2 space-x-2 hover:bg-gray-500 rounded transition"
+      >
+        <mat-icon>event_note</mat-icon>
+        <span>Plans</span>
+      </a>
+    </li>
+
+    <li>
+      <a
+        routerLink="/projects"
+        class="flex items-center px-4 py-2 space-x-2 hover:bg-gray-500 rounded transition"
+      >
+        <mat-icon>folder</mat-icon>
+        <span>Projects</span>
+      </a>
+    </li>
+
+    <li>
+      <a
+        routerLink="/filters"
+        class="flex items-center px-4 py-2 space-x-2 hover:bg-gray-500 rounded transition"
+      >
+        <mat-icon>filter_list</mat-icon>
+        <span>Filters</span>
+      </a>
+    </li>
+
+    <li>
+      <a
+        routerLink="/dashboards"
+        class="flex items-center px-4 py-2 space-x-2 hover:bg-gray-500 rounded transition"
+      >
+        <mat-icon>dashboard</mat-icon>
+        <span>Dashboards</span>
+      </a>
+    </li>
+
+    <li>
+      <a
+        routerLink="/teams"
+        class="flex items-center px-4 py-2 space-x-2 hover:bg-gray-500 rounded transition"
+      >
+        <mat-icon>group</mat-icon>
+        <span>Teams</span>
+      </a>
+    </li>
+
+    <li>
+      <a
+        routerLink="/profile"
+        class="flex items-center px-4 py-2 space-x-2 hover:bg-gray-500 rounded transition"
+      >
+        <mat-icon>account_circle</mat-icon>
+        <span>My Profile</span>
+      </a>
+    </li>
+  </ul>
+</div>

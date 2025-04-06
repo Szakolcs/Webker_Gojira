@@ -1,1 +1,8 @@
-/* You can add global styles to this file, and also import other style files */
+@import "tailwindcss";
+
+.gradient-text {
+  background: linear-gradient(to right, navy, #e61ee2); /* Gradient from navy blue to dark pink */
+  -webkit-background-clip: text; /* Clips background to the text */
+  -webkit-text-fill-color: transparent; /* Makes the text transparent to show the gradient */
+}
+
