@@ -1,0 +1,64 @@
+<div class="container">
+  <h2>{{ project.name }}</h2>
+  <table class="project-table">
+    <tr>
+      <th>Description:</th>
+      <td>{{ project.description }}</td>
+    </tr>
+    <tr>
+      <th>Due Date:</th>
+      <td>{{ project.dueDate | date }}</td>
+    </tr>
+    <tr>
+      <th>Created At:</th>
+      <td>{{ project.createdAt | date }}</td>
+    </tr>
+    <tr>
+      <th>Last Update:</th>
+      <td>{{ project.lastUpdate | date }}</td>
+    </tr>
+    <tr>
+      <th>Status:</th>
+      <td>{{ project.status }}</td>
+    </tr>
+    <tr>
+      <th>Story Points:</th>
+      <td>{{ project.storyPoints }}</td>
+    </tr>
+
+    <tr>
+      <th>Issues:</th>
+      <td>
+
+        <ul>
+          @for (issue of relatedIssues; track issue.id) {
+            <li>
+              {{ issue.summary }} ({{ issue.status }})
+            </li>
+            <br/>
+          }
+        </ul>
+      </td>
+    </tr>
+
+    <tr>
+      <th>Team:</th>
+      <td>{{ relatedTeam?.name }}</td>
+    </tr>
+
+    <tr>
+      <th>Team Members:</th>
+      <td>
+        <ul>
+          <br/>
+          @for (user of relatedUsers; track user.id) {
+            <li>
+              {{ user.name }} ({{ user.skillLevel }})
+            </li>
+            <br/>
+          }
+        </ul>
+      </td>
+    </tr>
+  </table>
+</div>

@@ -1,120 +1,134 @@
 <nav>
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <div class="logo-container">
-    <button mat-button (click)="toggle.emit()" type="button">
-      <mat-icon>{{ !isVisible ? 'arrow_forward_ios' : 'arrow_back_ios' }}</mat-icon>
-    </button>
-    <a href="/" class="logo">
-      Gojira
-    </a>
-  </div>
-  <div class="spacer">
-    <div class="search-bar">
-      <mat-icon>search</mat-icon>
-      <input type="text" placeholder="Search...">
+  <div class="nav">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <div class="logo-container">
+      <button mat-button (click)="toggle.emit()" type="button">
+        <mat-icon>{{ !isVisible ? 'arrow_forward_ios' : 'arrow_back_ios' }}</mat-icon>
+      </button>
+      <a href="/" class="logo">
+        Gojira
+      </a>
+    </div>
+    <div class="spacer">
+      <div class="search-bar">
+        <mat-icon>search</mat-icon>
+        <input type="text" placeholder="Search...">
+      </div>
+
+      <button
+        (click)="openModal()"
+        class="action-button">
+        <mat-icon>add</mat-icon>
+        <span>Create</span>
+      </button>
     </div>
 
-    <button
-      (click)="openModal()"
-      class="action-button">
-      <mat-icon>add</mat-icon>
-      <span>Create</span>
-    </button>
+    <div class="navbar-actions">
+
+      <button mat-button type="button"
+              matBadge="5"
+              matBadgePosition="after"
+              matBadgeSize="large"
+              matTooltip="Notifications">
+        <mat-icon>notifications</mat-icon>
+      </button>
+
+      <button mat-button type="button"
+              matTooltip="Help">
+        <mat-icon>help</mat-icon>
+      </button>
+
+      <button mat-button type="button"
+              matTooltip="Settings">
+        <mat-icon>settings</mat-icon>
+      </button>
+
+      <button mat-button type="button"
+              routerLink="/profile"
+              matTooltip="Profile">
+        <mat-icon>account_circle</mat-icon>
+      </button>
+    </div>
   </div>
+  <div [hidden]="!isVisible" class="sidebar">
+    <ul>
+      <li class="list">
+        <a
+          routerLink="/home">
+          <mat-icon>star</mat-icon>
+          <span>For You</span>
+        </a>
+      </li>
+      <li class="list">
+        <a
+          routerLink="/apps">
+          <mat-icon>apps</mat-icon>
+          <span>Apps</span>
+        </a>
+      </li>
 
-  <div class="navbar-actions">
+      <li class="list">
+        <a
+          routerLink="/plans">
+          <mat-icon>event_note</mat-icon>
+          <span>Plans</span>
+        </a>
+      </li>
 
-    <button mat-button type="button"
-            matBadge="5"
-            matBadgePosition="after"
-            matBadgeSize="large"
-            matTooltip="Notifications">
-      <mat-icon>notifications</mat-icon>
-    </button>
+      <li>
+        <div class="expandable-item" (click)="isProjectExpanded = !isProjectExpanded">
+          <mat-icon>folder</mat-icon>
+          <span>Projects</span>
+          <mat-icon>{{ isProjectExpanded ? 'expand_less' : 'expand_more' }}</mat-icon>
+        </div>
+        @if (isProjectExpanded) {
+          <ul class="nested-items">
+            @for (project of projects; track project.name){
+            <li>
+              <a routerLink="/projects/{{ project.id }}">
+                <mat-icon class="project-icon">folder_open</mat-icon>
+                <span >{{ project.name }}</span>
+              </a>
+            </li>
+            }
+          </ul>
+        }
+      </li>
 
-    <button mat-button type="button"
-            matTooltip="Help">
-      <mat-icon>help</mat-icon>
-    </button>
+      <li class="list">
+        <a
+          routerLink="/filters">
+          <mat-icon>filter_list</mat-icon>
+          <span>Filters</span>
+        </a>
+      </li>
 
-    <button mat-button type="button"
-            matTooltip="Settings">
-      <mat-icon>settings</mat-icon>
-    </button>
+      <li class="list">
+        <a
+          routerLink="/dashboards">
+          <mat-icon>dashboard</mat-icon>
+          <span>Dashboards</span>
+        </a>
+      </li>
 
-    <button mat-button type="button"
-            routerLink="/profile"
-            matTooltip="Profile">
-      <mat-icon>account_circle</mat-icon>
-    </button>
+      <li class="list">
+        <a
+          routerLink="/teams">
+          <mat-icon>group</mat-icon>
+          <span>Teams</span>
+        </a>
+      </li>
+
+      <li class="list">
+        <a
+          routerLink="/profile">
+          <mat-icon>account_circle</mat-icon>
+          <span>My Profile</span>
+        </a>
+      </li>
+    </ul>
+    <ng-template cdkPortal>
+      <app-create-issue/>
+    </ng-template>
   </div>
 </nav>
-<div [hidden]="!isVisible" class="sidebar">
-  <ul>
-    <li>
-      <a
-        routerLink="/home">
-        <mat-icon>star</mat-icon>
-        <span>For You</span>
-      </a>
-    </li>
-    <li>
-      <a
-        routerLink="/apps">
-        <mat-icon>apps</mat-icon>
-        <span>Apps</span>
-      </a>
-    </li>
-
-    <li>
-      <a
-        routerLink="/plans">
-        <mat-icon>event_note</mat-icon>
-        <span>Plans</span>
-      </a>
-    </li>
-
-    <li>
-      <a
-        routerLink="/projects">
-        <mat-icon>folder</mat-icon>
-        <span>Projects</span>
-      </a>
-    </li>
-
-    <li>
-      <a
-        routerLink="/filters">
-        <mat-icon>filter_list</mat-icon>
-        <span>Filters</span>
-      </a>
-    </li>
-
-    <li>
-      <a
-        routerLink="/dashboards">
-        <mat-icon>dashboard</mat-icon>
-        <span>Dashboards</span>
-      </a>
-    </li>
-
-    <li>
-      <a
-        routerLink="/teams">
-        <mat-icon>group</mat-icon>
-        <span>Teams</span>
-      </a>
-    </li>
-
-    <li>
-      <a
-        routerLink="/profile">
-        <mat-icon>account_circle</mat-icon>
-        <span>My Profile</span>
-      </a>
-    </li>
-  </ul>
-  <ng-template cdkPortal>
-    <app-create/>
-  </ng-template>
-</div>

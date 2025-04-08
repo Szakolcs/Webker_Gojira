@@ -7,7 +7,8 @@ import {MatBadge} from '@angular/material/badge';
  import {MatTooltip} from '@angular/material/tooltip';
 import {Overlay, OverlayConfig} from '@angular/cdk/overlay';
 import {CdkPortal, PortalModule} from '@angular/cdk/portal';
-import {CreateComponent} from '../../pages/create/create.component';
+import {CreateIssueComponent} from '../../pages/create-issue/create-issue.component';
+import projects from '../../database/projects';
 
 @Component({
   selector: 'app-navbar',
@@ -18,19 +19,22 @@ import {CreateComponent} from '../../pages/create/create.component';
     MatBadge,
     MatTooltip,
     PortalModule,
-    CreateComponent,
+    CreateIssueComponent,
   ],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.css'
 })
+
+
 export class NavbarComponent {
   @Input() isVisible: boolean = true;
   @Output() toggle = new EventEmitter<void>();
   @ViewChild(CdkPortal) portal!: CdkPortal;
 
-  constructor(private overlay: Overlay) { }
+  constructor(private overlay: Overlay) {}
 
   openModal() {
+    // noinspection DuplicatedCode
     const config = new OverlayConfig({
         positionStrategy: this.overlay.position().global().centerHorizontally().centerVertically(),
         hasBackdrop: true,
@@ -45,4 +49,6 @@ export class NavbarComponent {
 
   }
 
+  protected readonly projects = projects;
+  isProjectExpanded: boolean = false;
 }

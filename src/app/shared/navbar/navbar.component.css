@@ -5,7 +5,7 @@
   --sidebar-link-transition: background-color 0.2s;
 }
 
-nav {
+.nav {
   background-color: white;
   box-shadow: 0 .4rem .8rem rgba(0, 0, 0, 0.1);
   padding: 1rem;
@@ -13,7 +13,8 @@ nav {
   align-items: center;
   position: fixed;
   width: 100%;
-  z-index: 100;
+  z-index: 20;
+  top: 0;
   justify-content: space-between;
 }
 
@@ -83,14 +84,15 @@ mat-icon {
 }
 
 .sidebar {
+  position: fixed;
+  top: 3.5rem;
   background-color: white;
   box-shadow: 0 .4rem .8rem rgba(0, 0, 0, 0.1);
-  position: fixed;
   color: black;
   width: 13rem;
   z-index: 101;
   min-height: 100vh;
-  margin-top: 5rem;
+  margin-top: 1.5rem;
   padding: 2rem 1rem;
 
 }
@@ -121,12 +123,59 @@ mat-icon {
 .sidebar a:hover {
   background-color: #94a3b8;
 }
+.expandable-item {
+  display: flex;
+  cursor: pointer;
+  background-color: #f9f9f9;
+  transition: background-color 0.3s ease;
+  margin-bottom: 0.5rem;
+}
+
+.expandable-item:hover {
+  background-color: #878787;
+}
+
+.expandable-item span {
+  flex-grow: 1;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #333;
+}
+
+.expandable-item mat-icon:last-child {
+  color: #000000;
+  transition: transform 0.3s ease;
+  margin-right: 0.5rem;
+}
+.nested-items {
+  padding: 1rem;
+}
+
+.nested-items a {
+  display: flex;
+  font-size: 0.7rem;
+  align-items: center;
+  text-decoration: none;
+  color: #444;
+  border-radius: 0.25rem;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+.nested-items a:first-child {
+}
+
+.nested-items a:hover {
+  background-color: #616161;
+}
+
+.project-icon {
+  margin-left: .5rem;
+}
 
 ul > * + * {
   margin-top: 1rem;
 }
 
-li > * {
+.list > * {
   display: flex;
   flex-direction: row;
   align-items: center;

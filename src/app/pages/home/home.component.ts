@@ -1,10 +1,16 @@
-import {Component} from '@angular/core';
+import {Component, ViewChild} from '@angular/core';
 import {MatDivider} from '@angular/material/divider';
 import {MatCard, MatCardContent, MatCardHeader, MatCardSubtitle, MatCardTitle} from '@angular/material/card';
 import {MatTab, MatTabGroup} from '@angular/material/tabs';
 import {MatList, MatListItem} from '@angular/material/list';
 import {DatePipe} from '@angular/common';
 import {MatCheckbox} from '@angular/material/checkbox';
+import {MatIcon} from '@angular/material/icon';
+import projects from '../../database/projects';
+import {RouterLink} from '@angular/router';
+import {CdkPortal} from '@angular/cdk/portal';
+import {Overlay, OverlayConfig} from '@angular/cdk/overlay';
+import {CreateProjectComponent} from '../create-project/create-project.component';
 
 @Component({
   selector: 'app-home',
@@ -20,18 +26,19 @@ import {MatCheckbox} from '@angular/material/checkbox';
     DatePipe,
     MatCheckbox,
     MatTabGroup,
-    MatTab
+    MatTab,
+    MatIcon,
+    RouterLink,
+    CdkPortal,
+    CreateProjectComponent
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
 export class HomeComponent {
-  recentProjects = [
-    { name: 'Project Alpha', description: 'Building a new Alpha system', lastUpdated: new Date() },
-    { name: 'Project Beta', description: 'Improving Beta features', lastUpdated: new Date() },
-    { name: 'Project Gamma', description: 'Revamping Gamma design', lastUpdated: new Date() },
-  ];
+  @ViewChild(CdkPortal) portal!: CdkPortal;
 
+  constructor(private overlay: Overlay) {}
   navbarOptions = [
     { name: 'Worked on' },
     { name: 'Viewed' },
@@ -42,4 +49,21 @@ export class HomeComponent {
   workedOnList = ['Feature 1', 'Bug Fix 23', 'Database Migration'];
   viewedList = ['Report Analysis', 'User Module'];
   assignedToMeList = ['Implement UI Changes', 'Fix Critical Bug'];
+  protected readonly projects = projects;
+
+  openCreateProjectModal() {
+    // noinspection DuplicatedCode
+    const config = new OverlayConfig({
+      positionStrategy: this.overlay.position().global().centerHorizontally().centerVertically(),
+      hasBackdrop: true,
+      height: '80%',
+    });
+
+    const overlayRef = this.overlay.create(config);
+    const overlayElement = overlayRef.overlayElement;
+    overlayElement.style.background = 'white';
+    overlayRef.attach(this.portal);
+    overlayRef.backdropClick().subscribe(() => overlayRef.detach());
+
+  }
 }
