@@ -1,12 +1,12 @@
 <div class="container">
   <h2>Create a New Project</h2>
-  <form (ngSubmit)="createProject()">
+  <form [formGroup]="createProjectForm" (ngSubmit)="createProject()">
     <div class="form-group">
       <label for="name">Project Name:</label>
       <input
         id="name"
         type="text"
-        [(ngModel)]="newProject.name"
+        formControlName="name"
         name="name"
         placeholder="Enter project name"
         required
@@ -17,7 +17,7 @@
       <label for="description">Description:</label>
       <textarea
         id="description"
-        [(ngModel)]="newProject.description"
+        formControlName="description"
         name="description"
         placeholder="Enter project description"
         required
@@ -29,7 +29,7 @@
       <input
         id="dueDate"
         type="date"
-        [(ngModel)]="newProject.dueDate"
+        formControlName="dueDate"
         name="dueDate"
         required
       />
@@ -37,7 +37,7 @@
 
     <div class="form-group">
       <label for="team">Team:</label>
-      <select id="team" [(ngModel)]="newProject.teamId" name="team" required>
+      <select id="team" formControlName="teamId" name="team" required>
         @for (team of teams; track team.id) {
           <option [value]="team.id">{{ team.name }}</option>
         }
@@ -46,7 +46,7 @@
 
     <div class="form-group">
       <label for="owner">Owner:</label>
-      <select id="owner" [(ngModel)]="newProject.ownerId" name="owner" required>
+      <select id="owner" formControlName="ownerId" name="owner" required>
         @for (user of users; track user.id) {
           <option [value]="user.id">{{ user.name }}</option>
         }
@@ -55,7 +55,7 @@
 
     <div class="form-group">
       <label for="status">Status:</label>
-      <select id="status" [(ngModel)]="newProject.status" name="status" required>
+      <select id="status" formControlName="status" name="status" required>
         <option value="InProgress">In Progress</option>
         <option value="Pending">Pending</option>
         <option value="Completed">Completed</option>
@@ -67,7 +67,7 @@
       <input
         id="storyPoints"
         type="number"
-        [(ngModel)]="newProject.storyPoints"
+        formControlName="storyPoints"
         name="storyPoints"
         min="0"
         placeholder="Enter story points"
