@@ -11,6 +11,9 @@ nav {
   padding: 1rem;
   display: flex;
   align-items: center;
+  position: fixed;
+  width: 100%;
+  z-index: 100;
   justify-content: space-between;
 }
 
@@ -23,9 +26,9 @@ nav {
 .logo {
   font-size: 2rem;
   font-weight: bold;
+  background: linear-gradient(to right, navy, #e61ee2);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  background: linear-gradient(to right, navy, #e61ee2);
 
 }
 
@@ -80,11 +83,14 @@ mat-icon {
 }
 
 .sidebar {
+  background-color: white;
+  box-shadow: 0 .4rem .8rem rgba(0, 0, 0, 0.1);
   position: fixed;
-  background: white;
   color: black;
   width: 13rem;
+  z-index: 101;
   min-height: 100vh;
+  margin-top: 5rem;
   padding: 2rem 1rem;
 
 }

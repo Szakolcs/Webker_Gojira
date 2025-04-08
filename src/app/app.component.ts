@@ -18,5 +18,4 @@ export class AppComponent {
   get sidebarMargin(): string {
     return this.isSidebarVisible ? '13rem' : '0';
   }
-
 }

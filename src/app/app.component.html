@@ -1,6 +1,6 @@
 <app-navbar
-  [isVisible]="isSidebarVisible"
-  (toggle)="toggleSidebar()"/>
+  (toggle)="toggleSidebar()"
+  [isVisible]="isSidebarVisible"/>
 <div [style.margin-left]="sidebarMargin">
   <router-outlet/>
 </div>
