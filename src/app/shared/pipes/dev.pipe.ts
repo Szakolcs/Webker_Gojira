@@ -1,11 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-
-interface Dev {
-  name: string;
-  email: string;
-  skillLevel: "beginner" | "intermediate" | "advanced" | string
-
-}
+import User from '../../types/User';
 
 @Pipe({
   name: 'devFormatter',
@@ -13,7 +7,7 @@ interface Dev {
 })
 
 export class FormatDev implements PipeTransform {
-  transform(value: Dev): string {
+  transform(value: User): string {
     if (!value) return '';
 
     try {
