@@ -17,7 +17,7 @@ describe('AppsComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('should create-issue', () => {
     expect(component).toBeTruthy();
   });
 });

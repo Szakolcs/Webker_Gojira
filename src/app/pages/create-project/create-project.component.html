@@ -1,0 +1,82 @@
+<div class="container">
+  <h2>Create a New Project</h2>
+  <form (ngSubmit)="createProject()">
+    <div class="form-group">
+      <label for="name">Project Name:</label>
+      <input
+        id="name"
+        type="text"
+        [(ngModel)]="newProject.name"
+        name="name"
+        placeholder="Enter project name"
+        required
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="description">Description:</label>
+      <textarea
+        id="description"
+        [(ngModel)]="newProject.description"
+        name="description"
+        placeholder="Enter project description"
+        required
+      ></textarea>
+    </div>
+
+    <div class="form-group">
+      <label for="dueDate">Due Date:</label>
+      <input
+        id="dueDate"
+        type="date"
+        [(ngModel)]="newProject.dueDate"
+        name="dueDate"
+        required
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="team">Team:</label>
+      <select id="team" [(ngModel)]="newProject.teamId" name="team" required>
+        @for (team of teams; track team.id) {
+          <option [value]="team.id">{{ team.name }}</option>
+        }
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="owner">Owner:</label>
+      <select id="owner" [(ngModel)]="newProject.ownerId" name="owner" required>
+        @for (user of users; track user.id) {
+          <option [value]="user.id">{{ user.name }}</option>
+        }
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="status">Status:</label>
+      <select id="status" [(ngModel)]="newProject.status" name="status" required>
+        <option value="InProgress">In Progress</option>
+        <option value="Pending">Pending</option>
+        <option value="Completed">Completed</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="storyPoints">Story Points:</label>
+      <input
+        id="storyPoints"
+        type="number"
+        [(ngModel)]="newProject.storyPoints"
+        name="storyPoints"
+        min="0"
+        placeholder="Enter story points"
+        required
+      />
+    </div>
+
+    <div class="form-group">
+      <button type="submit">Create Project</button>
+    </div>
+  </form>
+</div>
