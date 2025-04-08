@@ -8,3 +8,4 @@ interface Milestone {
   projectId: string; // Associated project
   status: StatusEnum;
 }
+export default Milestone;

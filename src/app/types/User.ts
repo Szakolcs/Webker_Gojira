@@ -1,6 +1,6 @@
 import SkillLevel from "./SkillLevelEnum";
 
-interface User {
+interface User  {
   id: string,
   name: string,
   email: string,

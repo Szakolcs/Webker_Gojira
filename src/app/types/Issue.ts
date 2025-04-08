@@ -1,5 +1,6 @@
 import Label from './Label';
 import StatusEnum from './StatusEnum';
+import PriorityEnum from './PriorityEnum';
 
 interface Issue {
   id: string;
@@ -15,8 +16,6 @@ interface Issue {
   priority: PriorityEnum;
   createdAt: Date;
   updatedAt: Date;
-
-  getChildren(): Issue[];
 }
 
 export default Issue;

@@ -4,3 +4,4 @@ enum PriorityEnum {
   Medium = "Medium",
   Low = "Low",
 }
+export default PriorityEnum;

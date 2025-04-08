@@ -1,10 +1,8 @@
-import User from "./User";
 
 interface Team {
   id: string;
   name: string;
-  users: User[];
-  projectIds: string[];
+  projectIds: string[] | null;
 }
 
 export default Team;
