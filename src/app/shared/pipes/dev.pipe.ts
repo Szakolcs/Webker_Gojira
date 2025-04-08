@@ -21,7 +21,7 @@ export class FormatDev implements PipeTransform {
       const name = dev.name;
       const email = dev.email;
       const skillLevel = dev.skillLevel;
-      return `${email}    (${name} - ${skillLevel})`;
+      return `${email}  (${name} - ${skillLevel})`;
 
     } catch (error) {
 

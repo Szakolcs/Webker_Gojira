@@ -1,7 +1,7 @@
 <app-navbar
   [isVisible]="isSidebarVisible"
   (toggle)="toggleSidebar()"/>
-<div [class.ml-50]="isSidebarVisible">
+<div [style.margin-left]="sidebarMargin">
   <router-outlet/>
 </div>
 

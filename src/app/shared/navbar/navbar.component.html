@@ -1,24 +1,28 @@
-<nav class="navbar bg-white shadow p-4 flex items-center justify-between">
+<nav>
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <button mat-button (click)="toggle.emit()" type="button">
-    <mat-icon>{{ !isVisible ? 'arrow_forward_ios' : 'arrow_back_ios' }}</mat-icon>
-  </button>
+  <div class="logo-container">
+    <button mat-button (click)="toggle.emit()" type="button">
+      <mat-icon>{{ !isVisible ? 'arrow_forward_ios' : 'arrow_back_ios' }}</mat-icon>
+    </button>
+    <a href="/" class="logo">
+      Gojira
+    </a>
+  </div>
+  <div class="spacer">
+    <div class="search-bar">
+      <mat-icon>search</mat-icon>
+      <input type="text" placeholder="Search...">
+    </div>
 
-  <a href="/" class="logo text-3xl font-bold gradient-text">
-    Gojira
-  </a>
-
-  <div class="search-bar flex-1 mx-4 pl-10 pr-10">
-    <input type="text" placeholder="Search..." class="border rounded w-full py-2 px-4 text-sm"/>
+    <button
+      (click)="openModal()"
+      class="action-button">
+      <mat-icon>add</mat-icon>
+      <span>Create</span>
+    </button>
   </div>
 
-  <div class="navbar-actions flex items-center space-x-1">
-    <button
-      routerLink="/create"
-      class="action-button text-blue-600 font-medium flex items-center px-4 py-2 bg-blue-100 hover:bg-blue-200 rounded">
-      <mat-icon>add</mat-icon>
-      <span class="ml-2">Create</span>
-    </button>
+  <div class="navbar-actions">
 
     <button mat-button type="button"
             matBadge="5"
@@ -30,7 +34,7 @@
 
     <button mat-button type="button"
             matTooltip="Help">
-    <mat-icon>help</mat-icon>
+      <mat-icon>help</mat-icon>
     </button>
 
     <button mat-button type="button"
@@ -45,22 +49,18 @@
     </button>
   </div>
 </nav>
-<div [hidden]="!isVisible" class="fixed sidebar bg-gray-300 text-black w-50 min-h-screen px-4 py-8">
-  <ul class="space-y-4">
+<div [hidden]="!isVisible" class="sidebar">
+  <ul>
     <li>
       <a
-        routerLink="/home"
-        class="flex items-center px-4 py-2 space-x-2 hover:bg-gray-500 rounded transition"
-      >
+        routerLink="/home">
         <mat-icon>star</mat-icon>
         <span>For You</span>
       </a>
     </li>
     <li>
       <a
-        routerLink="/apps"
-        class="flex items-center px-4 py-2 space-x-2 hover:bg-gray-500 rounded transition"
-      >
+        routerLink="/apps">
         <mat-icon>apps</mat-icon>
         <span>Apps</span>
       </a>
@@ -68,9 +68,7 @@
 
     <li>
       <a
-        routerLink="/plans"
-        class="flex items-center px-4 py-2 space-x-2 hover:bg-gray-500 rounded transition"
-      >
+        routerLink="/plans">
         <mat-icon>event_note</mat-icon>
         <span>Plans</span>
       </a>
@@ -78,9 +76,7 @@
 
     <li>
       <a
-        routerLink="/projects"
-        class="flex items-center px-4 py-2 space-x-2 hover:bg-gray-500 rounded transition"
-      >
+        routerLink="/projects">
         <mat-icon>folder</mat-icon>
         <span>Projects</span>
       </a>
@@ -88,9 +84,7 @@
 
     <li>
       <a
-        routerLink="/filters"
-        class="flex items-center px-4 py-2 space-x-2 hover:bg-gray-500 rounded transition"
-      >
+        routerLink="/filters">
         <mat-icon>filter_list</mat-icon>
         <span>Filters</span>
       </a>
@@ -98,9 +92,7 @@
 
     <li>
       <a
-        routerLink="/dashboards"
-        class="flex items-center px-4 py-2 space-x-2 hover:bg-gray-500 rounded transition"
-      >
+        routerLink="/dashboards">
         <mat-icon>dashboard</mat-icon>
         <span>Dashboards</span>
       </a>
@@ -108,9 +100,7 @@
 
     <li>
       <a
-        routerLink="/teams"
-        class="flex items-center px-4 py-2 space-x-2 hover:bg-gray-500 rounded transition"
-      >
+        routerLink="/teams">
         <mat-icon>group</mat-icon>
         <span>Teams</span>
       </a>
@@ -118,12 +108,13 @@
 
     <li>
       <a
-        routerLink="/profile"
-        class="flex items-center px-4 py-2 space-x-2 hover:bg-gray-500 rounded transition"
-      >
+        routerLink="/profile">
         <mat-icon>account_circle</mat-icon>
         <span>My Profile</span>
       </a>
     </li>
   </ul>
+  <ng-template cdkPortal>
+    <app-create/>
+  </ng-template>
 </div>

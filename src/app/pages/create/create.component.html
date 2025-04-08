@@ -1,46 +1,45 @@
-<div class="flex flex-col space-y-4 p-8 w-full max-w-4xl mx-auto">
-
-  <h1 class="text-2xl font-bold">Create</h1>
-  <p class="text-sm text-gray-600">Required fields are marked with an asterix *</p>
-  <mat-form-field class="w-full">
+<div class="form-container">
+  <h1>Create a new issue</h1>
+  <h2>Required fields are marked with an asterix *</h2>
+  <mat-form-field>
     <mat-label>
       Project
     </mat-label>
     <mat-select [(ngModel)]="selectedProject" [placeholder]="'Select a project'" required>
       @for (project of projects; track projects.indexOf(project)) {
-        <mat-option [value]=project.name style="background: white">{{ project.name }}</mat-option>
+        <mat-option [value]=project.name>{{ project.name }}</mat-option>
       }
     </mat-select>
   </mat-form-field>
   <br/>
-  <mat-form-field class="w-full">
+  <mat-form-field>
     <mat-label>
       Issue type
     </mat-label>
     <mat-select [(ngModel)]="selectedIssueType" [placeholder]="'Select an issue type'" required>
       @for (issue of issueEnumKeys; track issueEnumKeys?.indexOf(issue)) {
-        <mat-option [value]=issue style="background: white">{{ issue }}</mat-option>
+        <mat-option [value]=issue>{{ issue }}</mat-option>
       }
     </mat-select>
   </mat-form-field>
-  <mat-form-field class="w-full">
+  <mat-form-field>
     <mat-label>
       Status
     </mat-label>
     <mat-select [(ngModel)]="selectedStatus" matTooltip="Initial status">
-      <mat-option [value]="'TODO'" style="background: white">To Do</mat-option>
-      <mat-option [value]="'Done'" style="background: white">Done</mat-option>
+      <mat-option [value]="'TODO'">To Do</mat-option>
+      <mat-option [value]="'Done'">Done</mat-option>
     </mat-select>
   </mat-form-field>
   <br/>
-  <mat-form-field class="w-full">
+  <mat-form-field>
     <mat-label>
       Summary
     </mat-label>
     <input type="text" matInput placeholder="Enter a summary" [(ngModel)]="summary" required>
   </mat-form-field>
   <br/>
-  <mat-form-field class="w-full">
+  <mat-form-field>
     <mat-label>
       Description
     </mat-label>
@@ -48,28 +47,28 @@
               required></textarea>
   </mat-form-field>
   <br/>
-  <mat-form-field class="w-full">
+  <mat-form-field>
     <mat-label>
       Assignee
     </mat-label>
     <mat-select [(ngModel)]="selectedDev" [placeholder]="'Assign to someone'">
       @for (dev of devs; track dev.email) {
-        <mat-option [value]=dev.email style="background: white">
+        <mat-option [value]=dev.email>
             {{ dev | devFormatter }}
         </mat-option>
       }
     </mat-select>
   </mat-form-field>
   <br/>
-  <mat-form-field class="w-full">
+  <mat-form-field>
     <mat-label>
       Labels
     </mat-label>
     <mat-select [(ngModel)]="selectedLabels" [placeholder]="'Select labels'" multiple>
       @for (label of labels; track labels.indexOf(label)) {
-        <mat-option [value]=label.name style="background: white">
-          <div style="display: flex">
-            <div [style.background-color]="label.color" class="h-3 w-3 mx-1 mt-1.5 border-b-black clear-both"></div>
+        <mat-option [value]=label.name>
+          <div style="display: flex" class="label-with-color">
+            <div [style.background-color]="label.color" class="color-dot"></div>
             {{ label.name }}
           </div>
         </mat-option>
@@ -77,26 +76,26 @@
     </mat-select>
   </mat-form-field>
   <br/>
-  <mat-form-field class="w-full">
+  <mat-form-field>
     <mat-label>
       Parent
     </mat-label>
     <mat-select [(ngModel)]="selectedParent" [placeholder]="'Choose a parent'">
       @for (parent of issues; track parent.id) {
-        <mat-option [value]=parent.id style="background: white">
+        <mat-option [value]=parent.id>
           {{ parent.summary }}
         </mat-option>
       }
     </mat-select>
   </mat-form-field>
   <br/>
-  <mat-form-field class="w-full">
+  <mat-form-field>
     <mat-label>
       Team
     </mat-label>
     <mat-select [(ngModel)]="selectedTeam" [placeholder]="'Choose a team'">
       @for (team of teams; track team.id) {
-        <mat-option [value]=team.id style="background: white; padding-bottom: 10px" >
+        <mat-option [value]=team.id class="team-option" >
           <mat-label>
             {{ team.id }}
           </mat-label>
@@ -107,14 +106,13 @@
       }
     </mat-select>
   </mat-form-field>
-  <mat-form-field class="w-full">
+  <mat-form-field>
     <mat-label>
-      Storypoints
+      Story points
     </mat-label>
     <input type="number" matInput placeholder="Storypoints" [(ngModel)]="storyPoint">
   </mat-form-field>
-  <div class="flex justify-end mr-20 space-x-8">
+  <div class="submit-button" (click)="createIssue()">
     <button mat-raised-button color="primary">Create</button>
-    <button mat-raised-button color="warn">Cancel</button>
   </div>
 </div>

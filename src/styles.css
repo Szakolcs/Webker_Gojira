@@ -1,8 +1,16 @@
 @import "tailwindcss";
+@import "@angular/cdk/overlay-prebuilt.css";
 
-.gradient-text {
-  background: linear-gradient(to right, navy, #e61ee2); /* Gradient from navy blue to dark pink */
-  -webkit-background-clip: text; /* Clips background to the text */
-  -webkit-text-fill-color: transparent; /* Makes the text transparent to show the gradient */
-}
+/*.custom-portal {*/
 
+/*  background: white !important;*/
+/*  max-height: calc(100vh - 120px) !important;*/
+/*  flex-direction: column !important;*/
+/*  overflow-y: auto !important;*/
+/*  padding: 24px !important;*/
+/*  border-radius: 4px !important;*/
+/*  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15) !important;*/
+/*}*/
+
+
+/*logo szine 7B00E6*/

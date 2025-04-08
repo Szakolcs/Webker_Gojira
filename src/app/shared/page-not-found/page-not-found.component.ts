@@ -8,7 +8,7 @@ import {MatButton} from '@angular/material/button';
   imports: [
     MatIcon,
     MatButton,
-    RouterLink
+    RouterLink,
   ],
   templateUrl: './page-not-found.component.html',
   styleUrl: './page-not-found.component.css'

@@ -218,4 +218,7 @@ export class CreateComponent {
   selectedLabels: any = [];
   selectedTeam: any;
 
+  createIssue() {
+    console.log(" hehe ");
+  }
 }

@@ -1,10 +1,13 @@
-import {Component, Output, EventEmitter} from '@angular/core';
+import {Component, Output, EventEmitter, ViewChild} from '@angular/core';
 import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
 import {Input} from '@angular/core';
 import {RouterLink} from '@angular/router';
 import {MatBadge} from '@angular/material/badge';
  import {MatTooltip} from '@angular/material/tooltip';
+import {Overlay, OverlayConfig} from '@angular/cdk/overlay';
+import {CdkPortal, PortalModule} from '@angular/cdk/portal';
+import {CreateComponent} from '../../pages/create/create.component';
 
 @Component({
   selector: 'app-navbar',
@@ -13,7 +16,9 @@ import {MatBadge} from '@angular/material/badge';
     MatButtonModule,
     RouterLink,
     MatBadge,
-    MatTooltip
+    MatTooltip,
+    PortalModule,
+    CreateComponent,
   ],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.css'
@@ -21,5 +26,23 @@ import {MatBadge} from '@angular/material/badge';
 export class NavbarComponent {
   @Input() isVisible: boolean = true;
   @Output() toggle = new EventEmitter<void>();
+  @ViewChild(CdkPortal) portal!: CdkPortal;
+
+  constructor(private overlay: Overlay) { }
+
+  openModal() {
+    const config = new OverlayConfig({
+        positionStrategy: this.overlay.position().global().centerHorizontally().centerVertically(),
+        hasBackdrop: true,
+        height: '80%',
+    });
+
+    const overlayRef = this.overlay.create(config);
+    const overlayElement = overlayRef.overlayElement;
+    overlayElement.style.background = 'white';
+    overlayRef.attach(this.portal);
+    overlayRef.backdropClick().subscribe(() => overlayRef.detach());
+
+  }
 
 }
