@@ -52,7 +52,7 @@
       Assignee
     </mat-label>
     <mat-select [(ngModel)]="selectedDev" [placeholder]="'Assign to someone'">
-      @for (dev of devs; track dev.email) {
+      @for (dev of users; track dev.email) {
         <mat-option [value]=dev.email>
             {{ dev | devFormatter }}
         </mat-option>
@@ -97,11 +97,8 @@
       @for (team of teams; track team.id) {
         <mat-option [value]=team.id class="team-option" >
           <mat-label>
-            {{ team.id }}
+            {{ team.name }}
           </mat-label>
-          @for (dev of team.devs; track dev) {
-            <p>{{ dev.name }}</p>
-          }
         </mat-option>
       }
     </mat-select>
