@@ -9,6 +9,7 @@ import {Overlay, OverlayConfig} from '@angular/cdk/overlay';
 import {CdkPortal, PortalModule} from '@angular/cdk/portal';
 import {CreateIssueComponent} from '../../pages/create-issue/create-issue.component';
 import projects from '../../database/projects';
+import {NgStyle} from '@angular/common';
 
 @Component({
   selector: 'app-navbar',
@@ -20,6 +21,7 @@ import projects from '../../database/projects';
     MatTooltip,
     PortalModule,
     CreateIssueComponent,
+    NgStyle,
   ],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.css'
@@ -51,4 +53,7 @@ export class NavbarComponent {
 
   protected readonly projects = projects;
   isProjectExpanded: boolean = false;
+  get boxShadow() {
+    return this.isVisible ? '13rem .4rem .8rem rgba(0, 0, 0, 0.1)' : '0 .4rem .8rem rgba(0, 0, 0, 0.1)';
+  }
 }

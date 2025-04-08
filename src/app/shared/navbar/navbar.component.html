@@ -1,5 +1,5 @@
 <nav>
-  <div class="nav">
+  <div class="nav" [ngStyle]="{'box-shadow': boxShadow}">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <div class="logo-container">
       <button mat-button (click)="toggle.emit()" type="button">
