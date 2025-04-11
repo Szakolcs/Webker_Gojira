@@ -3,7 +3,7 @@ import {MatDivider} from '@angular/material/divider';
 import {MatCard, MatCardContent, MatCardHeader, MatCardSubtitle, MatCardTitle} from '@angular/material/card';
 import {MatTab, MatTabGroup} from '@angular/material/tabs';
 import {MatList, MatListItem} from '@angular/material/list';
-import {DatePipe} from '@angular/common';
+import {DatePipe, NgClass} from '@angular/common';
 import {MatCheckbox} from '@angular/material/checkbox';
 import {MatIcon} from '@angular/material/icon';
 import projects from '../../database/projects';
@@ -11,6 +11,7 @@ import {RouterLink} from '@angular/router';
 import {CdkPortal} from '@angular/cdk/portal';
 import {Overlay, OverlayConfig} from '@angular/cdk/overlay';
 import {CreateProjectComponent} from '../create-project/create-project.component';
+import {FormsModule} from '@angular/forms';
 
 @Component({
   selector: 'app-home',
@@ -30,7 +31,9 @@ import {CreateProjectComponent} from '../create-project/create-project.component
     MatIcon,
     RouterLink,
     CdkPortal,
-    CreateProjectComponent
+    CreateProjectComponent,
+    FormsModule,
+    NgClass
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
@@ -46,7 +49,12 @@ export class HomeComponent {
     { name: 'Boards' },
   ];
 
-  workedOnList = ['Feature 1', 'Bug Fix 23', 'Database Migration'];
+  workedOnList = [
+    { text: 'Task 1', checked: false },
+    { text: 'Task 2', checked: false },
+    { text: 'Task 3', checked: false }
+  ];
+
   viewedList = ['Report Analysis', 'User Module'];
   assignedToMeList = ['Implement UI Changes', 'Fix Critical Bug'];
   protected readonly projects = projects;

@@ -136,3 +136,6 @@ mat-list-item > * + * {
   gap: 1rem;
   font-style: italic;
 }
+.line-through {
+  text-decoration: line-through;
+}
