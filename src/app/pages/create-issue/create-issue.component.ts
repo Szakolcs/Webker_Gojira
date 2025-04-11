@@ -76,7 +76,6 @@ export class CreateIssueComponent implements OnInit {
   }
 
   createIssue(): void {
-    console.log("hehe")
     if (this.createIssueForm.valid) {
       const newId = (this.issues.length + 1).toString();
 
