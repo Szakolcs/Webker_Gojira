@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {DatePipe} from '@angular/common';
 
 import projects from './../../database/projects';
@@ -24,15 +24,22 @@ export class ProjectComponent implements OnInit {
   relatedTeam!: Team;
   relatedUsers: User[] = [];
 
-  constructor(private route: ActivatedRoute) {
+  constructor(private route: ActivatedRoute, private router: Router) {
   }
 
   ngOnInit(): void {
     this.route.paramMap.subscribe((params) => {
       const projectId = params.get('id');
-
       if (projectId) {
-        this.project = projects.find((proj) => proj.id === projectId)!;
+        const foundProject = projects.find((proj) => proj.id === projectId);
+        if (!foundProject) {
+          this.router.navigate(["/"]).then(() => {
+            console.warn("Project not found, redirected to home.");
+          });
+          return;
+        }
+
+        this.project = foundProject;
 
         this.relatedIssues = issues.filter((issue) => issue.projectId === projectId);
 
@@ -43,6 +50,7 @@ export class ProjectComponent implements OnInit {
         );
 
       }
+
     });
   }
 }
