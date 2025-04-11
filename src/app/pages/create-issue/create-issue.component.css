@@ -103,10 +103,6 @@ textarea:focus {
   border-radius: 50%;
 }
 
-.team-option {
-  padding-bottom: 1rem;
-}
-
 .team-option mat-label {
   margin-bottom: 0.5rem;
 }
