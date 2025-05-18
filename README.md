@@ -1,9 +1,19 @@
-Tema: furodtema? JIRA copycat amugy
-Create read van 
-email:    test@test.test
-password: testest
-ezt az accot nezzetek
-amit meg lehet nezni: login, signup, home, projektek, azokon belul issuek, profil, create gomb fent, create projekt kartya a homeba, sidebar dolgok, logout
+#Tema: furodtema? JIRA copycat amugy
+##Create read van 
+##ezt az accot nezzetek
+###email:    test@test.test
+###password: testest
+##amit meg lehet nezni:
+- login,
+- signup,
+- home,
+- projektek,
+- azokon belul issuek,
+- profil,
+- create gomb fent,
+- create projekt kartya a homeba,
+- sidebar dolgok,
+- logout
 
 ponozashoz help:
 | Feladat                                                                 | Pont | Max Pont |
