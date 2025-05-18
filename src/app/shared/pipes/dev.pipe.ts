@@ -7,9 +7,8 @@ import User from '../../types/User';
 })
 
 export class FormatDev implements PipeTransform {
-  transform(value: User): string {
-    if (!value) return '';
-
+  transform(value: User | null): string {
+    if (!value) return 'Unassigned';
     try {
       const dev = value;
       const name = dev.name;

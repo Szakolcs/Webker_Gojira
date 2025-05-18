@@ -1,7 +1,13 @@
-<app-navbar
-  (toggle)="toggleSidebar()"
-  [isVisible]="isSidebarVisible"/>
-<div [style.margin-left]="sidebarMargin">
-  <router-outlet/>
-</div>
-
+@if (isLoggedIn) {
+  <app-navbar
+    (toggle)="toggleSidebar()"
+    [isVisible]="isSidebarVisible"/>
+  <div [style.margin-left]="sidebarMargin" class="main-content">
+    <router-outlet/>
+  </div>
+} @else {
+  <div class="main-content">
+    <router-outlet/>
+  </div>
+}
+<app-footer/>

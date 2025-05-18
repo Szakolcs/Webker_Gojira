@@ -6,12 +6,14 @@ import {MatList, MatListItem} from '@angular/material/list';
 import {DatePipe, NgClass} from '@angular/common';
 import {MatCheckbox} from '@angular/material/checkbox';
 import {MatIcon} from '@angular/material/icon';
-import projects from '../../database/projects';
 import {RouterLink} from '@angular/router';
 import {CdkPortal} from '@angular/cdk/portal';
 import {Overlay, OverlayConfig} from '@angular/cdk/overlay';
 import {CreateProjectComponent} from '../create-project/create-project.component';
 import {FormsModule} from '@angular/forms';
+import {ProjectService} from '../../services/project.service';
+import {Subscription} from 'rxjs';
+import Project from '../../types/Project';
 
 @Component({
   selector: 'app-home',
@@ -40,8 +42,34 @@ import {FormsModule} from '@angular/forms';
 })
 export class HomeComponent {
   @ViewChild(CdkPortal) portal!: CdkPortal;
+  protected projects: Project[] = [];
+  private subscription: Subscription = new Subscription();
 
-  constructor(private overlay: Overlay) {}
+  constructor(
+    private overlay: Overlay,
+    private projectService: ProjectService,
+  ) {
+    this.subscription.add(
+      this.projectService.projectsCreated$.subscribe(() => {
+        this.loadProjects();
+      })
+    );
+  }
+
+  loadProjects() {
+    this.projectService.getMyProjects().subscribe(projects => {
+      this.projects = projects as Project[];
+    });
+  }
+
+  ngOnInit() {
+    this.loadProjects();
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
+  }
+
   navbarOptions = [
     { name: 'Worked on' },
     { name: 'Viewed' },
@@ -57,7 +85,6 @@ export class HomeComponent {
 
   viewedList = ['Report Analysis', 'User Module'];
   assignedToMeList = ['Implement UI Changes', 'Fix Critical Bug'];
-  protected readonly projects = projects;
 
   openCreateProjectModal() {
     // noinspection DuplicatedCode
@@ -71,7 +98,14 @@ export class HomeComponent {
     const overlayElement = overlayRef.overlayElement;
     overlayElement.style.background = 'white';
     overlayRef.attach(this.portal);
+    const subscription = this.projectService.projectsCreated$.subscribe(() => {
+      overlayRef.detach();
+      subscription.unsubscribe();
+    });
+
     overlayRef.backdropClick().subscribe(() => overlayRef.detach());
 
   }
+
+  protected readonly Date = Date;
 }

@@ -27,7 +27,7 @@
         </mat-card-header>
         <mat-divider class="card-divider"/>
         <mat-card-content>
-          <p>Last Updated: {{ project.dueDate | date:'shortDate' }}</p>
+          <p class="last-updated">Due Date: {{ project.dueDate | date:'shortDate' }}</p>
         </mat-card-content>
       </mat-card>
     }
@@ -91,4 +91,3 @@
     <app-create-project/>
   </ng-template>
 </div>
-

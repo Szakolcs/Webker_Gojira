@@ -1,7 +1,7 @@
 import Project from './../types/Project';
 import StatusEnum from './../types/StatusEnum';
 
-const projects: Project[] = [
+const sampleProjects: Project[] = [
   {
     id: '1',
     name: 'Project Apollo',
@@ -43,4 +43,4 @@ const projects: Project[] = [
   },
 ];
 
-export default projects;
+export default sampleProjects;

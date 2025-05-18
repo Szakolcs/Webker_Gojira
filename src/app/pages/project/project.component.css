@@ -1,45 +1,123 @@
+/* Project Component Styles */
 .container {
-  margin: 10rem auto;
+  margin: 7rem auto var(--spacing-xl) auto; /* Increased top margin to prevent navbar overlap */
   display: flex;
   flex-direction: column;
   align-items: center;
   align-content: center;
-  padding: 1rem;
-  max-width: 37.5rem; /* 600px divided by 16 */
-  background-color: #f9f9f9;
-  border: 0.0625rem solid #ddd; /* 1px divided by 16 */
-  border-radius: 0.5rem; /* 8px divided by 16 */
-  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.1); /* 2px and 4px divided by 16 */
+  padding: var(--spacing-xl);
+  max-width: 50rem; /* Increased from 37.5rem (600px) to make it wider */
+  background-color: var(--neutral-100);
+  border: 1px solid var(--neutral-400);
+  border-radius: var(--border-radius-md);
+  box-shadow: var(--shadow-sm);
+  transition: all var(--transition-normal);
+}
+
+.container:hover {
+  box-shadow: var(--shadow-md);
+  border-color: var(--primary-light);
+  transform: translateY(-4px);
 }
 
 .container h2 {
-  margin-bottom: 1rem;
-  color: #333;
+  margin-bottom: var(--spacing-md);
+  color: var(--neutral-900);
   text-align: center;
 }
 
 .project-table {
   width: 100%;
   border-collapse: collapse;
+  border-radius: var(--border-radius-md);
+  overflow: hidden;
 }
 
 .project-table th,
 .project-table td {
   text-align: left;
-  padding: 0.5rem; /* 8px divided by 16 */
-  border-bottom: 0.0625rem solid #ddd; /* 1px divided by 16 */
+  padding: var(--spacing-md);
+  border-bottom: 1px solid var(--neutral-400);
+  transition: all var(--transition-normal);
 }
 
 .project-table th {
   font-weight: bold;
-  color: #555;
-  width: 12.5rem; /* 200px divided by 16 */
+  color: var(--neutral-800);
+  width: 12.5rem; /* 200px */
+  background-color: var(--neutral-200);
 }
 
 .project-table td {
-  color: #777;
+  color: var(--neutral-700);
+}
+
+.project-table tr {
+  transition: all var(--transition-normal);
+}
+
+.project-table tr:hover td {
+  background-color: var(--neutral-200);
+  color: var(--primary-color);
 }
 
 .project-table tr:last-child td {
   border-bottom: none;
+}
+
+.action-buttons {
+  display: flex;
+  justify-content: center;
+  gap: var(--spacing-md);
+  margin-top: var(--spacing-xl);
+  width: 100%;
+}
+
+.action-button {
+  padding: var(--spacing-sm) var(--spacing-lg);
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: var(--border-radius-md);
+  font-size: var(--font-size-md);
+  font-weight: 500;
+  cursor: pointer;
+  transition: all var(--transition-normal);
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.action-button:hover {
+  background-color: var(--primary-dark);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.secondary-button {
+  background-color: var(--neutral-300);
+  color: var(--neutral-900);
+}
+
+.secondary-button:hover {
+  background-color: var(--neutral-400);
+}
+
+/* Issue link styles */
+.issue-link {
+  color: var(--neutral-700); /* Changed to match other text */
+  text-decoration: none;
+  font-weight: 500;
+  transition: all var(--transition-normal);
+  display: inline-block;
+  padding: 4px 8px;
+  border-radius: var(--border-radius-sm);
+}
+
+.issue-link:hover {
+  color: var(--primary-color); /* Blue on hover */
+  background-color: var(--neutral-200);
+  text-decoration: underline;
+  transform: translateY(-1px);
 }

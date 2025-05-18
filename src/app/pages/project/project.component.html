@@ -33,7 +33,9 @@
         <ul>
           @for (issue of relatedIssues; track issue.id) {
             <li>
-              {{ issue.summary }} ({{ issue.status }})
+              <a [routerLink]="['/issues', issue.id]" class="issue-link">
+                {{ issue | issueFormat }}
+              </a>
             </li>
             <br/>
           }
@@ -43,7 +45,7 @@
 
     <tr>
       <th>Team:</th>
-      <td>{{ relatedTeam.name }}</td>
+      <td>To be implemented</td>
     </tr>
 
     <tr>
@@ -51,12 +53,8 @@
       <td>
         <ul>
           <br/>
-          @for (user of relatedUsers; track user.id) {
-            <li>
-              {{ user.name }} ({{ user.skillLevel }})
-            </li>
-            <br/>
-          }
+          To be implemented
+          <br/>
         </ul>
       </td>
     </tr>

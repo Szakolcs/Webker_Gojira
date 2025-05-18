@@ -1,1 +1,121 @@
-<p>auth works!</p>
+<div class="auth-container">
+  <div class="auth-card">
+    <!-- Form Selector -->
+    <div class="form-selector">
+      <div class="selector-option" [class.active]="isSignIn" (click)="isSignIn = true">Sign In</div>
+      <div class="selector-option" [class.active]="!isSignIn" (click)="isSignIn = false">Sign Up</div>
+    </div>
+
+    <!-- Sign In Form -->
+    @if (isSignIn) {
+      <div class="form-container">
+        @if (errorMessage) {
+          <div class="auth-error">{{ errorMessage }}</div>
+        }
+        <form [formGroup]="signInForm" (ngSubmit)="onSignIn()">
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" formControlName="email" placeholder="Enter your email">
+            @if (signInForm.get('email')?.invalid && signInForm.get('email')?.touched) {
+              <div class="error-message">
+                @if (signInForm.get('email')?.errors?.['required']) {
+                  <span>Email is required</span>
+                }
+                @if (signInForm.get('email')?.errors?.['email']) {
+                  <span>Please enter a valid email</span>
+                }
+              </div>
+            }
+          </div>
+
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" id="password" formControlName="password" placeholder="Enter your password">
+            @if (signInForm.get('password')?.invalid && signInForm.get('password')?.touched) {
+              <div class="error-message">
+                @if (signInForm.get('password')?.errors?.['required']) {
+                  <span>Password is required</span>
+                }
+                @if (signInForm.get('password')?.errors?.['minlength']) {
+                  <span>Password must be at least 6 characters</span>
+                }
+              </div>
+            }
+          </div>
+
+          <button type="submit" [disabled]="signInForm.invalid">Sign In</button>
+        </form>
+      </div>
+    }
+
+    <!-- Sign Up Form -->
+    @if (!isSignIn) {
+      <div class="form-container">
+        @if (errorMessage) {
+          <div class="auth-error">{{ errorMessage }}</div>
+        }
+        <form [formGroup]="signUpForm" (ngSubmit)="onSignUp()">
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" id="name" formControlName="name" placeholder="Enter your name">
+            @if (signUpForm.get('name')?.invalid && signUpForm.get('name')?.touched) {
+              <div class="error-message">
+                @if (signUpForm.get('name')?.errors?.['required']) {
+                  <span>Name is required</span>
+                }
+              </div>
+            }
+          </div>
+
+          <div class="form-group">
+            <label for="signUpEmail">Email</label>
+            <input type="email" id="signUpEmail" formControlName="email" placeholder="Enter your email">
+            @if (signUpForm.get('email')?.invalid && signUpForm.get('email')?.touched) {
+              <div class="error-message">
+                @if (signUpForm.get('email')?.errors?.['required']) {
+                  <span>Email is required</span>
+                }
+                @if (signUpForm.get('email')?.errors?.['email']) {
+                  <span>Please enter a valid email</span>
+                }
+              </div>
+            }
+          </div>
+
+          <div class="form-group">
+            <label for="signUpPassword">Password</label>
+            <input type="password" id="signUpPassword" formControlName="password" placeholder="Enter your password">
+            @if (signUpForm.get('password')?.invalid && signUpForm.get('password')?.touched) {
+              <div class="error-message">
+                @if (signUpForm.get('password')?.errors?.['required']) {
+                  <span>Password is required</span>
+                }
+                @if (signUpForm.get('password')?.errors?.['minlength']) {
+                  <span>Password must be at least 6 characters</span>
+                }
+              </div>
+            }
+          </div>
+
+          <div class="form-group">
+            <label for="skillLevel">Skill Level</label>
+            <select id="skillLevel" formControlName="skillLevel">
+              @for (level of skillLevels; track level) {
+                <option [value]="level">{{ level }}</option>
+              }
+            </select>
+            @if (signUpForm.get('skillLevel')?.invalid && signUpForm.get('skillLevel')?.touched) {
+              <div class="error-message">
+                @if (signUpForm.get('skillLevel')?.errors?.['required']) {
+                  <span>Skill level is required</span>
+                }
+              </div>
+            }
+          </div>
+
+          <button type="submit" [disabled]="signUpForm.invalid">Sign Up</button>
+        </form>
+      </div>
+    }
+  </div>
+</div>

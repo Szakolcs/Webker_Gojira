@@ -7,7 +7,6 @@ import {MatTooltip} from '@angular/material/tooltip';
 import {MatButton} from '@angular/material/button';
 import {FormatDev} from '../../shared/pipes/dev.pipe';
 import StatusEnum from '../../types/StatusEnum';
-import projects from '../../database/projects';
 import users from '../../database/users';
 import labels from '../../database/labels';
 import issues from '../../database/issues';
@@ -19,6 +18,8 @@ import Team from '../../types/Team';
 import Project from '../../types/Project';
 import PriorityEnum from '../../types/PriorityEnum';
 import IssueTypeEnum from './../../types/IssueTypeEnum';
+import {ProjectService} from '../../services/project.service';
+import {IssueService} from '../../services/issue.service';
 
 
 @Component({
@@ -39,24 +40,24 @@ import IssueTypeEnum from './../../types/IssueTypeEnum';
   styleUrl: './create-issue.component.css'
 })
 
-// export class MyErrorStateMatcher implements ErrorStateMatcher {
-//   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
-//     const isSubmitted = form && form.submitted;
-//     return !!(control && control.invalid && (control.dirty || control.touched || isSubmitted));
-//   }
-// }
-
 export class CreateIssueComponent implements OnInit {
   createIssueForm!: FormGroup;
   issueEnumKeys: string[] | undefined;
-  projects: Project[] = projects;
+  protected projects: Project[] = [];
   users: User[] = users;
-  labels:  Label[] = labels;
+  labels: Label[] = labels;
   issues: Issue[] = issues;
   teams: Team[] = teams;
 
 
-  constructor(private fb: FormBuilder) {
+  constructor(
+    private fb: FormBuilder,
+    public projectService: ProjectService,
+    private issueService: IssueService,
+  ) {
+    this.projectService.getMyProjects().subscribe(projects => {
+      this.projects = projects as Project[]
+    });
     this.issueEnumKeys = Object.values(IssueTypeEnum) as string[];
   }
 
@@ -77,23 +78,21 @@ export class CreateIssueComponent implements OnInit {
 
   createIssue(): void {
     if (this.createIssueForm.valid) {
-      const newId = (this.issues.length + 1).toString();
 
       const newIssue = {
-        id: newId,
         ...this.createIssueForm.value,
-        createdAt: new Date(),
-        lastUpdated: new Date()
       };
-
-      this.issues.push(newIssue);
-
+      try {
+        this.issueService.createIssue(newIssue).then(ignored => {
+          alert('Issue successfully created!');
+        })
+      } catch (error) {
+        console.error('Failed to create Issue: ', error);
+      }
       this.createIssueForm.reset({
         status: 'TODO',
         storyPoints: 0
       });
-      console.log(this.issues)
-      alert('Issue successfully created!');
     } else {
       alert('Please fill in all required fields correctly.');
     }

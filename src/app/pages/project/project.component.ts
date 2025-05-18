@@ -1,56 +1,66 @@
-import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute, Router} from '@angular/router';
+import {Component, OnInit, OnDestroy} from '@angular/core';
+import {ActivatedRoute, Router, RouterModule} from '@angular/router';
 import {DatePipe} from '@angular/common';
+import {Subscription} from 'rxjs';
 
-import projects from './../../database/projects';
-import issues from './../../database/issues';
-import teams from './../../database/teams';
+import {IssueFormatPipe} from '../../shared/pipes/issue-format.pipe';
 
-import users from './../../database/users';
 import Project from './../../types/Project';
-import Team from './../../types/Team';
-import User from './../../types/User';
 import Issue from './../../types/Issue';
+import {ProjectService} from '../../services/project.service';
+import {IssueService} from '../../services/issue.service';
 
 @Component({
   selector: 'app-project',
   templateUrl: './project.component.html',
-  imports: [DatePipe],
+  imports: [DatePipe, RouterModule, IssueFormatPipe],
   styleUrls: ['./project.component.css'],
 })
-export class ProjectComponent implements OnInit {
+export class ProjectComponent implements OnInit, OnDestroy {
   project!: Project;
   relatedIssues: Issue[] = [];
-  relatedTeam!: Team;
-  relatedUsers: User[] = [];
+  private subscription: Subscription = new Subscription();
 
-  constructor(private route: ActivatedRoute, private router: Router) {
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private projectService: ProjectService,
+    private issueService: IssueService,
+  ) {
   }
 
   ngOnInit(): void {
-    this.route.paramMap.subscribe((params) => {
+    const paramSub = this.route.paramMap.subscribe((params) => {
       const projectId = params.get('id');
       if (projectId) {
-        const foundProject = projects.find((proj) => proj.id === projectId);
-        if (!foundProject) {
-          this.router.navigate(["/"]).then(() => {
-            console.warn("Project not found, redirected to home.");
-          });
-          return;
-        }
+        let foundProject: Project | null = null;
+        this.projectService.getProjectById(projectId).subscribe(project => {
+          foundProject = project;
+          if (!foundProject) {
+            this.router.navigate(["/"]).then(() => {
+              console.warn("Project not found, redirected to home.");
+            });
+            return;
+          }
 
-        this.project = foundProject;
+          this.project = foundProject;
+          this.issueService.getIssuesByProjectId(projectId).subscribe(issues => {
+            this.relatedIssues = issues as Issue[];
+          })
 
-        this.relatedIssues = issues.filter((issue) => issue.projectId === projectId);
-
-        this.relatedTeam = teams.find((team) => team.id === this.project.teamId)!;
-
-        this.relatedUsers = users.filter((user) =>
-          user.teamIds?.includes(this.relatedTeam.id)
-        );
-
+          // this.relatedTeam = teams.find((team) => team.id === this.project.teamId)!;
+          //
+          // this.relatedUsers = users.filter((user) =>
+          //   user.teamIds?.includes(this.relatedTeam.id ? this.relatedTeam.id : '')
+          // );
+        });
       }
-
     });
+
+    this.subscription.add(paramSub);
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 }

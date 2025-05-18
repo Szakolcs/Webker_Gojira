@@ -4,7 +4,7 @@ import PriorityEnum from './../types/PriorityEnum';
 import labels from './labels';
 import IssueTypeEnum from '../types/IssueTypeEnum';
 
-const issues: Issue[] = [
+const sampleIssues: Issue[] = [
   {
     id: '1',
     summary: 'Fix login bug',
@@ -155,8 +155,6 @@ const issues: Issue[] = [
     createdAt: new Date(),
     updatedAt: new Date(),
   },
-  // Add 20 more issues with different combinations of summary, description,
-  // status, labels, priorities, etc.
   {
     id: '11',
     summary: 'Design a new onboarding flow',
@@ -202,7 +200,5 @@ const issues: Issue[] = [
     createdAt: new Date(),
     updatedAt: new Date(),
   },
-  // Keep going until you have 30 completely defined issues...
 ];
-
-export default issues;
+export default sampleIssues;

@@ -17,13 +17,11 @@
     <mat-form-field>
       <mat-label>Issue type</mat-label>
       <mat-select formControlName="issueType" placeholder="Select an issue type" required>
-        @for (issue of issueEnumKeys; track issueEnumKeys?.indexOf(issue)) {
+        @for (issue of issueEnumKeys; track issueEnumKeys ? issueEnumKeys.indexOf(issue) : undefined) {
           <mat-option [value]="issue">{{ issue }}</mat-option>
         }
       </mat-select>
-    </mat-form-field>
 
-    <mat-form-field>
       <mat-label>Status</mat-label>
       <mat-select formControlName="status" matTooltip="Initial status">
         <mat-option [value]="StatusEnum.ToDo">To Do</mat-option>

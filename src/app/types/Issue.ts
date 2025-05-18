@@ -4,7 +4,7 @@ import PriorityEnum from './PriorityEnum';
 import IssueTypeEnum from './IssueTypeEnum';
 
 interface Issue {
-  id: string;
+  id?: string;
   summary: string;
   description: string;
   status: StatusEnum;

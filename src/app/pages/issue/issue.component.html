@@ -1,0 +1,86 @@
+<div class="issue-container">
+  <div class="issue-header">
+    <button mat-button (click)="goBack()">← Back to Project</button>
+    <h1>{{ issue.summary }}</h1>
+  </div>
+
+  <div class="issue-details">
+    <div class="issue-section">
+      <h2>Details</h2>
+      <table class="details-table">
+        <tr>
+          <th>Type:</th>
+          <td>{{ issueTypeLabel }}</td>
+        </tr>
+        <tr>
+          <th>Priority:</th>
+          <td>{{ priorityLabel }}</td>
+        </tr>
+        <tr>
+          <th>Project:</th>
+          <td>{{ project.name }}</td>
+        </tr>
+        <tr>
+          <th>Assignee:</th>
+          <td>{{ assignee ? assignee : null | devFormatter }}</td>
+        </tr>
+        <tr>
+          <th>Story Points:</th>
+          <td>{{ issue.storyPoints }}</td>
+        </tr>
+        <tr>
+          <th>Created:</th>
+          <td>{{ issue.createdAt | date }}</td>
+        </tr>
+        <tr>
+          <th>Updated:</th>
+          <td>{{ issue.updatedAt | date }}</td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="issue-section">
+      <h2>Status</h2>
+      <form [formGroup]="statusForm" (ngSubmit)="updateStatus()">
+        <mat-form-field>
+          <mat-label>Status</mat-label>
+          <mat-select formControlName="status">
+            @for (status of statusOptions; track status) {
+              <mat-option [value]="status">{{ status }}</mat-option>
+            }
+          </mat-select>
+        </mat-form-field>
+        <button mat-raised-button color="primary" type="submit">Update Status</button>
+      </form>
+    </div>
+
+    <div class="issue-section">
+      <h2>Description</h2>
+      <div class="description-content">
+        {{ issue.description }}
+      </div>
+    </div>
+
+    @if (issue.labels && issue.labels.length > 0) {
+      <div class="issue-section">
+        <h2>Labels</h2>
+        <div class="labels-container">
+          @for (label of issue.labels; track label.id) {
+            <div class="label-chip" [style.background-color]="label.color">
+              {{ label.name }}
+            </div>
+          }
+        </div>
+      </div>
+    }
+
+    @if (issue.parentNodeId) {
+      <div class="issue-section">
+        <h2>Parent Issue</h2>
+        <div>
+          {{ getParentIssueSummary() }}
+        </div>
+      </div>
+    }
+  </div>
+</div>

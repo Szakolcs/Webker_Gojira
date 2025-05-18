@@ -5,7 +5,7 @@ interface Milestone {
   name: string;
   description: string;
   dueDate: Date;
-  projectId: string; // Associated project
+  projectId: string;
   status: StatusEnum;
 }
 export default Milestone;

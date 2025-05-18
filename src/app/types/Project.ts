@@ -2,7 +2,7 @@ import StatusEnum from './StatusEnum';
 import Issue from './Issue';
 
 interface Project {
-  id: string;
+  id?: string;
   name: string;
   description: string;
   dueDate: Date;

@@ -1,5 +1,5 @@
 interface Label {
-  id: string;
+  id?: string;
   name: string;
   color: string;
   projectId: string;

@@ -1,0 +1,17 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.main-content {
+  flex: 1;
+  padding-bottom: 3rem; /* Add padding at the bottom to ensure content isn't cut off */
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .main-content {
+    padding-bottom: 2rem;
+  }
+}

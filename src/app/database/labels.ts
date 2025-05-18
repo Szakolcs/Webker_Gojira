@@ -1,6 +1,6 @@
 import Label from './../types/Label';
 
-const labels: Label[] = [
+const sampleLabels: Label[] = [
   { id: '1', name: 'Bug', color: '#FF0000', projectId: '1' },
   { id: '2', name: 'Feature', color: '#00FF00', projectId: '1' },
   { id: '3', name: 'Enhancement', color: '#0000FF', projectId: '1' },
@@ -23,4 +23,5 @@ const labels: Label[] = [
   { id: '20', name: 'Design', color: '#FFBA99', projectId: '1' },
 ];
 
-export default labels;
+
+export default sampleLabels;

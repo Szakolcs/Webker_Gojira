@@ -1,0 +1,30 @@
+/* Footer Component Styles */
+.footer {
+  background-color: var(--neutral-200);
+  padding: var(--spacing-lg) 0;
+  margin-top: var(--spacing-xl);
+  border-top: 1px solid var(--neutral-300);
+  width: 100%;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-md);
+}
+
+.copyright {
+  color: var(--neutral-700);
+  font-size: var(--font-size-sm);
+  text-align: center;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .footer {
+    padding: var(--spacing-md) 0;
+  }
+}

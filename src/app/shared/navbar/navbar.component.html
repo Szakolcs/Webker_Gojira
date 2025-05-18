@@ -2,9 +2,15 @@
   <div class="nav" [ngStyle]="{'box-shadow': boxShadow}">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <div class="logo-container">
-      <button mat-button (click)="toggle.emit()" type="button">
-        <mat-icon>{{ !isVisible ? 'arrow_forward_ios' : 'arrow_back_ios' }}</mat-icon>
-      </button>
+      @if (isMobileView) {
+        <button mat-button (click)="toggleMobileMenu()" type="button" class="hamburger-menu">
+          <mat-icon>{{ isMobileMenuOpen ? 'close' : 'menu' }}</mat-icon>
+        </button>
+      } @else {
+        <button mat-button (click)="toggle.emit()" type="button">
+          <mat-icon>{{ !isVisible ? 'arrow_forward_ios' : 'arrow_back_ios' }}</mat-icon>
+        </button>
+      }
       <a href="/" class="logo">
         Gojira
       </a>
@@ -19,57 +25,64 @@
         (click)="openModal()"
         class="action-button">
         <mat-icon>add</mat-icon>
-        <span>Create</span>
+        <span class="action-text">Create</span>
       </button>
     </div>
 
     <div class="navbar-actions">
+      @if (!isMobileView) {
+        <button mat-button type="button"
+                matBadge="5"
+                matBadgePosition="after"
+                matBadgeSize="large"
+                matTooltip="Notifications"
+                class="nav-action-button">
+          <mat-icon>notifications</mat-icon>
+        </button>
 
-      <button mat-button type="button"
-              matBadge="5"
-              matBadgePosition="after"
-              matBadgeSize="large"
-              matTooltip="Notifications">
-        <mat-icon>notifications</mat-icon>
-      </button>
+        <button mat-button type="button"
+                matTooltip="Help"
+                class="nav-action-button">
+          <mat-icon>help</mat-icon>
+        </button>
 
-      <button mat-button type="button"
-              matTooltip="Help">
-        <mat-icon>help</mat-icon>
-      </button>
+        <button mat-button type="button"
+                matTooltip="Settings"
+                class="nav-action-button">
+          <mat-icon>settings</mat-icon>
+        </button>
 
-      <button mat-button type="button"
-              matTooltip="Settings">
-        <mat-icon>settings</mat-icon>
-      </button>
-
-      <button mat-button type="button"
-              routerLink="/profile"
-              matTooltip="Profile">
-        <mat-icon>account_circle</mat-icon>
-      </button>
+        <button mat-button type="button"
+                routerLink="/profile"
+                matTooltip="Profile"
+                class="nav-action-button">
+          <mat-icon>account_circle</mat-icon>
+        </button>
+      }
     </div>
   </div>
-  <div [hidden]="!isVisible" class="sidebar">
+
+  @if (isMobileView && isMobileMenuOpen) {
+    <div class="mobile-menu-overlay" (click)="toggleMobileMenu()"></div>
+  }
+
+  <div [hidden]="!isVisible" [ngClass]="{'sidebar': true, 'mobile-sidebar': isMobileView}">
     <ul>
       <li class="list">
-        <a
-          routerLink="/home">
+        <a routerLink="/home" (click)="isMobileView ? toggleMobileMenu() : null">
           <mat-icon>star</mat-icon>
           <span>For You</span>
         </a>
       </li>
       <li class="list">
-        <a
-          routerLink="/apps">
+        <a routerLink="/apps" (click)="isMobileView ? toggleMobileMenu() : null">
           <mat-icon>apps</mat-icon>
           <span>Apps</span>
         </a>
       </li>
 
       <li class="list">
-        <a
-          routerLink="/plans">
+        <a routerLink="/plans" (click)="isMobileView ? toggleMobileMenu() : null">
           <mat-icon>event_note</mat-icon>
           <span>Plans</span>
         </a>
@@ -83,49 +96,87 @@
         </div>
         @if (isProjectExpanded) {
           <ul class="nested-items">
-            @for (project of projects; track project.name){
-            <li>
-              <a routerLink="/projects/{{ project.id }}">
-                <mat-icon class="project-icon">folder_open</mat-icon>
-                <span >{{ project.name }}</span>
-              </a>
-            </li>
+            @for (project of projects; track project.name) {
+              <li>
+                <a routerLink="/projects/{{ project.id }}" (click)="isMobileView ? toggleMobileMenu() : null">
+                  <mat-icon class="project-icon">folder_open</mat-icon>
+                  <span>{{ project.name }}</span>
+                </a>
+              </li>
             }
           </ul>
         }
       </li>
 
       <li class="list">
-        <a
-          routerLink="/filters">
+        <a routerLink="/filters" (click)="isMobileView ? toggleMobileMenu() : null">
           <mat-icon>filter_list</mat-icon>
           <span>Filters</span>
         </a>
       </li>
 
       <li class="list">
-        <a
-          routerLink="/dashboards">
+        <a routerLink="/dashboards" (click)="isMobileView ? toggleMobileMenu() : null">
           <mat-icon>dashboard</mat-icon>
           <span>Dashboards</span>
         </a>
       </li>
 
       <li class="list">
-        <a
-          routerLink="/teams">
+        <a routerLink="/teams" (click)="isMobileView ? toggleMobileMenu() : null">
           <mat-icon>group</mat-icon>
           <span>Teams</span>
         </a>
       </li>
 
       <li class="list">
-        <a
-          routerLink="/profile">
+        <a routerLink="/profile" (click)="isMobileView ? toggleMobileMenu() : null">
           <mat-icon>account_circle</mat-icon>
           <span>My Profile</span>
         </a>
       </li>
+
+      <!-- Authentication -->
+      @if (authService.isLoggedIn()) {
+        <li class="list">
+          <a (click)="logout(); isMobileView ? toggleMobileMenu() : null">
+            <mat-icon>exit_to_app</mat-icon>
+            <span>Logout</span>
+          </a>
+        </li>
+      } @else {
+        <li class="list">
+          <a routerLink="/login" (click)="isMobileView ? toggleMobileMenu() : null">
+            <mat-icon>login</mat-icon>
+            <span>Login</span>
+          </a>
+        </li>
+      }
+
+      <!-- Action buttons in mobile view -->
+      @if (isMobileView) {
+        <li class="list">
+          <a (click)="toggleMobileMenu()">
+            <mat-icon>notifications</mat-icon>
+            <span>Notifications</span>
+            <span class="badge">5</span>
+          </a>
+        </li>
+
+        <li class="list">
+          <a (click)="toggleMobileMenu()">
+            <mat-icon>help</mat-icon>
+            <span>Help</span>
+          </a>
+        </li>
+
+        <li class="list">
+          <a (click)="toggleMobileMenu()">
+            <mat-icon>settings</mat-icon>
+            <span>Settings</span>
+          </a>
+        </li>
+      }
     </ul>
     <ng-template cdkPortal>
       <app-create-issue/>

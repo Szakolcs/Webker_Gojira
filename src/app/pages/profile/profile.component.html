@@ -1,0 +1,170 @@
+<div class="profile-container">
+  <div class="profile-header">
+    <h1>User Profile</h1>
+    @if (successMessage) {
+      <div class="success-message">{{ successMessage }}</div>
+    }
+    @if (errorMessage) {
+      <div class="error-message">{{ errorMessage }}</div>
+    }
+  </div>
+
+  <!-- User Information Section -->
+  @if (currentUser) {
+    <div class="profile-section user-info">
+      <div class="section-header">
+        <h2>Personal Information</h2>
+        <button class="edit-button" (click)="toggleEditMode()">
+          {{ isEditing ? 'Cancel' : 'Edit Profile' }}
+        </button>
+      </div>
+
+      <!-- Display Mode -->
+      @if (!isEditing) {
+        <div class="user-details">
+          <div class="detail-item">
+            <span class="label">Name:</span>
+            <span class="value">{{ currentUser.name }}</span>
+          </div>
+          <div class="detail-item">
+            <span class="label">Skill Level:</span>
+            <span class="value">{{ currentUser.skillLevel }}</span>
+          </div>
+          <div class="detail-item">
+            <span class="label">Teams:</span>
+            @if (currentUser.teamIds.length > 0) {
+              <span class="value">
+                {{ currentUser.teamIds.join(', ') }}
+              </span>
+            } @else {
+              <span class="value">
+                Not a member of any team
+              </span>
+            }
+          </div>
+        </div>
+      }
+
+      <!-- Edit Mode -->
+      @if (isEditing) {
+        <div class="edit-form">
+          <form [formGroup]="editProfileForm" (ngSubmit)="saveProfile()">
+            <div class="form-group">
+              <label for="name">Name</label>
+              <input type="text" id="name" formControlName="name" class="form-control">
+              @if (editProfileForm.get('name')?.invalid && editProfileForm.get('name')?.touched) {
+                <div class="error-message">
+                  Name is required
+                </div>
+              }
+            </div>
+
+            <div class="form-group">
+              <label for="skillLevel">Skill Level</label>
+              <select id="skillLevel" formControlName="skillLevel" class="form-control">
+                @for (level of skillLevels; track level) {
+                  <option [value]="level">{{ level }}</option>
+                }
+              </select>
+            </div>
+
+            <div class="form-group teams-info">
+              <label>Teams (Cannot be changed)</label>
+              <div class="teams-display">
+                @if (currentUser.teamIds.length > 0) {
+                  <span>
+                    {{ currentUser.teamIds.join(', ') }}
+                  </span>
+                } @else {
+                  <span>
+                    Not a member of any team
+                  </span>
+                }
+              </div>
+            </div>
+
+            <div class="form-actions">
+              <button type="submit" class="save-button" [disabled]="editProfileForm.invalid">Save Changes</button>
+              <button type="button" class="cancel-button" (click)="toggleEditMode()">Cancel</button>
+            </div>
+          </form>
+        </div>
+      }
+    </div>
+  }
+
+  <!-- Activity Graph Section -->
+  @if (currentUser) {
+    <div class="profile-section activity-graph">
+      <h2>Activity in the Last Month</h2>
+
+      <div class="graph-container">
+        <!-- Graph Header -->
+        <div class="graph-header">
+          <div class="graph-title">Completed Issues</div>
+          <div class="graph-legend">
+            <div class="legend-item">
+              <div class="legend-color issues-color"></div>
+              <div class="legend-label">Issues</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Graph Visualization -->
+        <div class="graph-visualization">
+          <div class="graph-y-axis">
+            @for (value of [5, 4, 3, 2, 1, 0]; track value) {
+              <div class="y-axis-label">{{ value }}</div>
+            }
+          </div>
+
+          <div class="graph-content">
+            <div class="graph-bars">
+              @for (item of issuesByDate; track item) {
+                <div class="graph-bar">
+                  <div class="bar-tooltip">{{ item.date }}: {{ item.count }} issues</div>
+                  <div class="bar-fill" [style.height.%]="item.count * 20"></div>
+                </div>
+              }
+            </div>
+
+            <div class="graph-x-axis">
+              @for (item of issuesByDate; track item; let i = $index) {
+                <div class="x-axis-label">
+                  @if (i % 7 === 0) {
+                    <span>{{ item.date | date:'MMM d' }}</span>
+                  }
+                </div>
+              }
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Summary of Completed Issues -->
+      <div class="activity-summary">
+        <h3>Summary</h3>
+        <p>You have completed {{ completedIssues.length }} issues in the last month.</p>
+
+        @if (completedIssues.length > 0) {
+          <div class="completed-issues-list">
+            <h4>Recently Completed Issues:</h4>
+            <ul>
+              @for (issue of completedIssues.slice(0, 5); track issue) {
+                <li>
+                  {{ issue.summary }} ({{ issue.updatedAt | date:'mediumDate' }})
+                </li>
+              }
+            </ul>
+          </div>
+        }
+
+        @if (completedIssues.length === 0) {
+          <div class="no-issues-message">
+            <p>You haven't completed any issues in the last month. Keep up the good work!</p>
+          </div>
+        }
+      </div>
+    </div>
+  }
+</div>

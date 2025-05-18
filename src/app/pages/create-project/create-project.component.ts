@@ -1,9 +1,10 @@
 import {Component, OnInit} from '@angular/core';
-import projects from '../../database/projects';
 import {FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators} from '@angular/forms';
 import users from '../../database/users';
 import teams from '../../database/teams';
-
+import Project from '../../types/Project';
+import {ProjectService} from '../../services/project.service';
+import {Router} from '@angular/router';
 
 
 @Component({
@@ -15,11 +16,20 @@ import teams from '../../database/teams';
   templateUrl: './create-project.component.html',
   styleUrl: './create-project.component.css'
 })
-export class CreateProjectComponent implements OnInit{
+export class CreateProjectComponent implements OnInit {
   createProjectForm!: FormGroup;
+  protected projects: Project[] = [];
 
-  constructor(private fb: FormBuilder) {
+  constructor(
+    private router: Router,
+    private fb: FormBuilder,
+    private projectService: ProjectService,
+  ) {
+    this.projectService.getMyProjects().subscribe(projects => {
+      this.projects = projects as Project[]
+    });
   }
+
 
   ngOnInit(): void {
     this.createProjectForm = this.fb.group({
@@ -34,16 +44,9 @@ export class CreateProjectComponent implements OnInit{
   }
 
 
-  projects = projects;
-
   createProject(): void {
     if (this.createProjectForm.valid) {
-
-      const newId = (this.projects.length + 1).toString();
-
-
       const newProject = {
-        id: newId,
         ...this.createProjectForm.value,
         dueDate: new Date(this.createProjectForm.value.dueDate),
         issues: [],
@@ -51,17 +54,17 @@ export class CreateProjectComponent implements OnInit{
         lastUpdate: new Date(),
       };
 
+      try {
+        this.projectService.createProject(newProject).then(ignored => {
+          alert('Project successfully created!');
+          this.projectService.getMyProjects().subscribe(projects => {
+            this.projects = projects as Project[];
+          });
 
-      this.projects.push(newProject);
-
-
-      this.createProjectForm.reset({
-        status: 'InProgress',
-        storyPoints: 0,
-      });
-
-
-      alert('Project successfully created!');
+        })
+      } catch (error) {
+        console.error('Failed to create project: ', error);
+      }
     } else {
 
       alert('Please fill in all required fields correctly.');

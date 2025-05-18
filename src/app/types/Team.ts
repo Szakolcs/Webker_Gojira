@@ -1,6 +1,6 @@
 
 interface Team {
-  id: string;
+  id?: string;
   name: string;
   projectIds: string[] | null;
 }
