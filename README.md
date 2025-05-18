@@ -6,26 +6,29 @@ ezt az accot nezzetek
 amit meg lehet nezni: login, signup, home, projektek, azokon belul issuek, profil, create gomb fent, create projekt kartya a homeba, sidebar dolgok, logout
 
 ponozashoz help:
-forditasi hiba nincs                                                                        0,5/0,5
-futattasi hiba nincs                                                                        0/0,5
-adatmodellek a /src/app/types                                                               2/2
-reszponzivitas a /src/app/shared/navbar @media                                              6/6
-attributum direktivak: ngClass es ngModelt hasznaltam                                       1/2
-vezerlesi direktivak: rengeteg @for es if van                                               2/2
-szulo gyermek: asszem 2 paros van                                                           1.5/2
-materialokbol nagyon sok van de foleg a navbarban, create issueban es a homeba vannak       5/5
-2 pipe a src/app/shared/pipesba                                                             2/2
-Angular formok: signin, signup, create-issue, create-project                                4/4
-eleg sok ngoninit van de van ngondestroy is boven                                           2/2
-Csak create/read van                                                                        2/4
-injectalva vannak                                                                           1/1
-van 4 db where lekerdezes project.service es issue.service                                  8/8
-van nehany route src/app/app.routes                                                         4/4
-appguard pipa                                                                               1/1
-vedi az utvonalakat                                                                         1/1
-szubjektivan meg eleg jo lett                                                               7/7 pont?
+| Feladat                                                                 | Pont | Max Pont |
+|------------------------------------------------------------------------|------|----------|
+| **Fordítási hiba nincs**                                                 | 0,5  | 0,5      |
+| **Futtatási hiba nincs**                                                 | 0    | 0,5      |
+| **Adatmodellek a /src/app/types**                                        | 2    | 2        |
+| **Reszponzivitás a /src/app/shared/navbar @media**                       | 6    | 6        |
+| **Attribútum direktívák: ngClass és ngModelt használtam**               | 1    | 2        |
+| **Vezérlési direktívák: rengeteg @for és if van**                       | 2    | 2        |
+| **Szülő-gyermek adatátadás: asszem 2 páros van**                        | 1,5  | 2        |
+| **Materialok: nagyon sok van, de főleg a navbarban, create-issue-ban és a home-ban** | 5    | 5        |
+| **2 Pipe a src/app/shared/pipes-ba**                                     | 2    | 2        |
+| **Angular form-ok: signin, signup, create-issue, create-project**       | 4    | 4        |
+| **Elég sok ngOnInit van, de van ngOnDestroy is**                         | 2    | 2        |
+| **Csak create/read műveletek**                                           | 2    | 4        |
+| **Injectálva vannak**                                                   | 1    | 1        |
+| **Van 4 db where lekérdezés a project.service és issue.service-ben**    | 8    | 8        |
+| **Van néhány route a /src/app/app.routes-ban**                           | 4    | 4        |
+| **AppGuard pipa**                                                       | 1    | 1        |
+| **Védi az útvonalakat**                                                 | 1    | 1        |
+| **Szubjektívan meg elég jó lett**                                        | 7    | 7        |
+| **Összesen**                                                            | 50   | 57       |
+| **Bízok Bennetek!**                                                     | -    | -        |
 
-osszesen:                                                                                   50-43/57 BIZOK BENNETEK
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.6.
 
 ## Development server
