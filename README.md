@@ -25,7 +25,7 @@ ponozashoz help:
 | **Van néhány route a /src/app/app.routes-ban**                           | 4    | 4        |
 | **AppGuard pipa**                                                       | 1    | 1        |
 | **Védi az útvonalakat**                                                 | 1    | 1        |
-| **Szubjektívan meg elég jó lett**                                        | 7    | 7        |
+| **Szubjektívan meg elég jó lett**   (na legyszi legyszi)                                     | 7    | 7        |
 | **Összesen**                                                            | 50   | 57       |
 | **Bízok Bennetek!**                                                     | -    | -        |
 
