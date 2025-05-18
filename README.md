@@ -13,8 +13,8 @@ ponozashoz help:
 | **Adatmodellek a /src/app/types**                                        | 2    | 2        |
 | **Reszponzivitás a /src/app/shared/navbar @media**                       | 6    | 6        |
 | **Attribútum direktívák: ngClass és ngModelt használtam**               | 1    | 2        |
-| **Vezérlési direktívák: rengeteg @for és if van**                       | 2    | 2        |
-| **Szülő-gyermek adatátadás: asszem 2 páros van**                        | 1,5  | 2        |
+| **Vezérlési direktívák: rengeteg @for és @if van**                       | 2    | 2        |
+| **Szülő-gyermek adatátadás: asszem 2 páros van**                        | 1,5  | 3        |
 | **Materialok: nagyon sok van, de főleg a navbarban, create-issue-ban és a home-ban** | 5    | 5        |
 | **2 Pipe a src/app/shared/pipes-ba**                                     | 2    | 2        |
 | **Angular form-ok: signin, signup, create-issue, create-project**       | 4    | 4        |
