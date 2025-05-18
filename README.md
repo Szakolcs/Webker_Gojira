@@ -2,7 +2,7 @@
 ## Create read van 
 ## ezt az accot nezzetek
 ### email:    test@test.test
-### password: testest
+### password: testtest
 ## amit meg lehet nezni:
 - login,
 - signup,
