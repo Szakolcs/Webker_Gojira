@@ -1,56 +1,43 @@
-# pontozashoz linkek
-errorok elvileg nincsenek xd
+# Tema: furodtema? JIRA copycat amugy
+## Create read van 
+## ezt az accot nezzetek
+### email:    test@test.test
+### password: testtest
+## amit meg lehet nezni:
+- login,
+- signup,
+- home,
+- projektek,
+- azokon belul issuek,
+- profil,
+- create gomb fent,
+- create projekt kartya a homeba,
+- sidebar dolgok,
+- logout
 
-## Adatmodellek
-types mappaban van nehany [src/app/types](https://github.com/Szakolcs/Webker_Gojira/tree/09cd4b739e82b47122cd93396289b857fa5f2991/src/app/types)
-
-## File hosszak
-nem haladjak meg a kisabott hatart
-
-## reszponzivitas
-mobil nezet nincs megvalositva de nem mobilra lett tervezve a jira sem
-
-## Attributum direktivak
-https://github.com/Szakolcs/Webker_Gojira/blob/09cd4b739e82b47122cd93396289b857fa5f2991/src/app/app.component.html#L4
-https://github.com/Szakolcs/Webker_Gojira/blob/09cd4b739e82b47122cd93396289b857fa5f2991/src/app/shared/navbar/navbar.component.html#L2
-https://github.com/Szakolcs/Webker_Gojira/blob/7967c5bd34819d6da48333de9c219c4bc2a1718e/src/app/pages/home/home.component.html#L47
-https://github.com/Szakolcs/Webker_Gojira/blob/7967c5bd34819d6da48333de9c219c4bc2a1718e/src/app/pages/home/home.component.html#L48
-
-## Vezerlesi direktive
-https://github.com/Szakolcs/Webker_Gojira/blob/7967c5bd34819d6da48333de9c219c4bc2a1718e/src/app/pages/home/home.component.html#L43
-https://github.com/Szakolcs/Webker_Gojira/blob/7967c5bd34819d6da48333de9c219c4bc2a1718e/src/app/pages/home/home.component.html#L41
-es meg jo nehany helyen
-
-## Adatatadas
-https://github.com/Szakolcs/Webker_Gojira/blob/7967c5bd34819d6da48333de9c219c4bc2a1718e/src/app/shared/navbar/navbar.component.ts#L32
-https://github.com/Szakolcs/Webker_Gojira/blob/7967c5bd34819d6da48333de9c219c4bc2a1718e/src/app/shared/navbar/navbar.component.ts#L33
-https://github.com/Szakolcs/Webker_Gojira/blob/7967c5bd34819d6da48333de9c219c4bc2a1718e/src/app/shared/navbar/navbar.component.ts#L34
-
-## 10 Material
-https://github.com/Szakolcs/Webker_Gojira/blob/7967c5bd34819d6da48333de9c219c4bc2a1718e/src/app/pages/create-issue/create-issue.component.ts#L27
-https://github.com/Szakolcs/Webker_Gojira/blob/7967c5bd34819d6da48333de9c219c4bc2a1718e/src/app/pages/create-issue/create-issue.component.ts#L28
-https://github.com/Szakolcs/Webker_Gojira/blob/7967c5bd34819d6da48333de9c219c4bc2a1718e/src/app/pages/create-issue/create-issue.component.ts#L30
-https://github.com/Szakolcs/Webker_Gojira/blob/7967c5bd34819d6da48333de9c219c4bc2a1718e/src/app/pages/create-issue/create-issue.component.ts#L32
-https://github.com/Szakolcs/Webker_Gojira/blob/7967c5bd34819d6da48333de9c219c4bc2a1718e/src/app/pages/create-issue/create-issue.component.ts#L33
-https://github.com/Szakolcs/Webker_Gojira/blob/7967c5bd34819d6da48333de9c219c4bc2a1718e/src/app/pages/home/home.component.ts#L20
-https://github.com/Szakolcs/Webker_Gojira/blob/7967c5bd34819d6da48333de9c219c4bc2a1718e/src/app/pages/home/home.component.ts#L23
-https://github.com/Szakolcs/Webker_Gojira/blob/7967c5bd34819d6da48333de9c219c4bc2a1718e/src/app/pages/home/home.component.ts#L28
-https://github.com/Szakolcs/Webker_Gojira/blob/7967c5bd34819d6da48333de9c219c4bc2a1718e/src/app/pages/home/home.component.ts#L29
-https://github.com/Szakolcs/Webker_Gojira/blob/7967c5bd34819d6da48333de9c219c4bc2a1718e/src/app/pages/home/home.component.ts#L31
-https://github.com/Szakolcs/Webker_Gojira/blob/7967c5bd34819d6da48333de9c219c4bc2a1718e/src/app/pages/home/home.component.ts#L33
-
-***Ezek az importok de \[IDE find usages gomb] es warningot sem adnak hogy unused***
-
-meg meg van nehany boven sok
-
-## Angular formok
-https://github.com/Szakolcs/Webker_Gojira/blob/7967c5bd34819d6da48333de9c219c4bc2a1718e/src/app/pages/create-issue/create-issue.component.html#L5
-https://github.com/Szakolcs/Webker_Gojira/blob/7967c5bd34819d6da48333de9c219c4bc2a1718e/src/app/pages/create-project/create-project.component.html#L3
-
-## sajat pipe
-https://github.com/Szakolcs/Webker_Gojira/blob/7967c5bd34819d6da48333de9c219c4bc2a1718e/src/app/shared/pipes/dev.pipe.ts#L4
-
-# Gojira
+ponozashoz help:
+| Feladat                                                                 | Pont | Max Pont |
+|------------------------------------------------------------------------|------|----------|
+| **Fordítási hiba nincs**                                                 | 0,5  | 0,5      |
+| **Futtatási hiba nincs**                                                 | 0    | 0,5      |
+| **Adatmodellek a /src/app/types**                                        | 2    | 2        |
+| **Reszponzivitás a /src/app/shared/navbar @media**                       | 6    | 6        |
+| **Attribútum direktívák: ngClass és ngModelt használtam**               | 1    | 2        |
+| **Vezérlési direktívák: rengeteg @for és @if van**                       | 2    | 2        |
+| **Szülő-gyermek adatátadás: asszem 2 páros van**                        | 1,5  | 3        |
+| **Materialok: nagyon sok van, de főleg a navbarban, create-issue-ban és a home-ban** | 5    | 5        |
+| **2 Pipe a src/app/shared/pipes-ba**                                     | 2    | 2        |
+| **Angular form-ok: signin, signup, create-issue, create-project**       | 4    | 4        |
+| **Elég sok ngOnInit van, de van ngOnDestroy is**                         | 2    | 2        |
+| **Csak create/read műveletek**                                           | 2    | 4        |
+| **Injectálva vannak**                                                   | 1    | 1        |
+| **Van 4 db where lekérdezés a project.service és issue.service-ben**    | 8    | 8        |
+| **Van néhány route a /src/app/app.routes-ban**                           | 4    | 4        |
+| **AppGuard pipa**                                                       | 1    | 1        |
+| **Védi az útvonalakat**                                                 | 1    | 1        |
+| **Szubjektívan meg elég jó lett**   (na legyszi legyszi)                                     | 7    | 7        |
+| **Összesen**                                                            | 50   | 57       |
+| **Bízok Bennetek!**                                                     | -    | -        |
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.6.
 
