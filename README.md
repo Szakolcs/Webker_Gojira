@@ -1,9 +1,9 @@
-#Tema: furodtema? JIRA copycat amugy
-##Create read van 
-##ezt az accot nezzetek
-###email:    test@test.test
-###password: testest
-##amit meg lehet nezni:
+# Tema: furodtema? JIRA copycat amugy
+## Create read van 
+## ezt az accot nezzetek
+### email:    test@test.test
+### password: testest
+## amit meg lehet nezni:
 - login,
 - signup,
 - home,
